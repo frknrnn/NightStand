@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
 
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup(REQUIRES 6.2)
 
 qt_add_executable(appNightStand
     main.cpp
@@ -14,6 +14,7 @@ qt_add_executable(appNightStand
 
 qt_add_qml_module(appNightStand
     URI NightStand
+    VERSION 1.0
     QML_FILES
         Main.qml
 )

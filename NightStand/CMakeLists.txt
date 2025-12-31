@@ -5,6 +5,8 @@ project(NightStand VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_standard_project_setup(REQUIRES 6.2)
 
@@ -21,6 +23,9 @@ qt_add_qml_module(appNightStand
         RESOURCES Style/qmldir
         QML_FILES AppSettings/UiSettings.qml
         QML_FILES Style/UiStyle.qml
+        SOURCES Models/modelmanager.h Models/modelmanager.cpp
+        SOURCES ViewModels/appviewmodel.h ViewModels/appviewmodel.cpp
+        QML_FILES Widgets/SquareButton.qml
 
 )
 
@@ -38,6 +43,8 @@ set_target_properties(appNightStand PROPERTIES
 target_link_libraries(appNightStand
     PRIVATE Qt6::Quick
 )
+target_link_libraries(appNightStand PRIVATE Qt6::Core)
+target_link_libraries(appNightStand PRIVATE Qt6::Core)
 
 include(GNUInstallDirs)
 install(TARGETS appNightStand

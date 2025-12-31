@@ -19,8 +19,8 @@ Rectangle{
             anchors.top:parent.top
             anchors.left : parent.left
             anchors.right : parent.right
-            anchors.bottomMargin: 5
             Dashboard{
+
             }
         }
         Rectangle{
@@ -31,14 +31,14 @@ Rectangle{
             anchors.right : parent.right
             anchors.leftMargin : 30
             anchors.rightMargin: 30
-            anchors.bottomMargin: 10
-            height: parent.height * 0.2
+            anchors.bottomMargin: 5
+            height: parent.height * 0.15
             Rectangle{
                 anchors.fill:parent
-                anchors.topMargin : 10
-                anchors.bottomMargin: 10
+                anchors.topMargin : 5
+                anchors.bottomMargin: 5
                 radius: 10
-                color: UiStyle.menuPanelBackground
+                color: UiStyle.cardPanelColor
                 Row {
                     id: launcherPage
                     anchors.centerIn :parent
@@ -48,7 +48,7 @@ Rectangle{
                         delegate: QQC2.RoundButton {
 
                                 width: bottomMenu.width / 8
-                                height: bottomMenu.height * 0.6
+                                height: bottomMenu.height * 0.5
 
                                 required property string title
                                 required property string pageIcon

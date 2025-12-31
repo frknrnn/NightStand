@@ -7,6 +7,13 @@ Item {
     id: appstyle
 
     readonly property color baseColor: UiSettings.darkTheme ? "#000000" : "#FFFFFF"
+    readonly property color cardPanelColor: UiSettings.darkTheme ? "#1a2942" : "#FFFFFF"
+    readonly property color innerCardColor: UiSettings.darkTheme ? "#223548" : "#FFFFFF"
+    readonly property color roundButtonColor: UiSettings.darkTheme ? "#2a3f5f" : "#FFFFFF"
+    readonly property color textColor: UiSettings.darkTheme ? "white" : "#FFFFFF"
+    readonly property color subtextColor: UiSettings.darkTheme ? "#7a8fa8" : "#FFFFFF"
+    readonly property color headerColor: UiSettings.darkTheme ? "#6366f1" : "#FFFFFF"
+
     readonly property color menuPanelBackground: UiSettings.darkTheme ? "#1e1e1e" : "#EFE9E3"
     readonly property color menuSecondPanelBackground: UiSettings.darkTheme ? "#0f0f0f" : "#D9CFC7"
     readonly property color menuButtonBackground: UiSettings.darkTheme ? "#0f0f0f" : "#D9CFC7"
@@ -37,8 +44,6 @@ Item {
     readonly property color backgroundPanel: UiSettings.darkTheme ? "#262626" : "#002125"
 
     readonly property color iconColor: UiSettings.darkTheme ? "#262626" : "#FFFFFF"
-
-    readonly property color textColor: UiSettings.darkTheme ? "#E6E6E6" : "#FFFFFF"
     readonly property color titletextColor: UiSettings.darkTheme ? "#2CDE85" : "#898989"
 
     readonly property color highlightColor: UiSettings.darkTheme ? "#33676E" : "#28C878"

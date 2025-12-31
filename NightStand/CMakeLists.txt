@@ -30,6 +30,11 @@ qt_add_qml_module(appNightStand
         QML_FILES Views/Pages/Dashboard.qml
         QML_FILES Widgets/Page/PageTopBarItem.qml
         QML_FILES Views/LauncherPage.qml
+        QML_FILES Widgets/Cards/SceneCard.qml
+        QML_FILES Widgets/Cards/ControlCard.qml
+        QML_FILES Widgets/Cards/ActivityItemCard.qml
+        QML_FILES Widgets/Buttons/NavButton.qml
+        QML_FILES Widgets/Cards/DashboardCard.qml
 
 )
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="7.3705425mm"
+   height="7.937499mm"
+   viewBox="0 0 7.3705425 7.937499"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="drawing.svg"
+   xml:space="preserve"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="5.5945567"
+     inkscape:cx="97.594864"
+     inkscape:cy="39.770801"
+     inkscape:window-width="1452"
+     inkscape:window-height="949"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" /><defs
+     id="defs2" /><g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-23.464602,-8.4585922)"><g
+       style="fill:#ffffff"
+       id="g37-3"
+       transform="matrix(0.03543527,0,0,0.03543527,22.614156,7.8916279)"
+       inkscape:export-filename="../icons/stage3d-dark.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><path
+         d="m 230.91016,171.96924 a 7.99926,7.99926 0 0 1 -2.87891,10.94092 l -96,56 a 8.00059,8.00059 0 0 1 -8.0625,0 l -96,-56 a 8.0000805,8.0000805 0 0 1 8.0625,-13.82032 L 128,222.73828 219.96875,169.08984 a 8.00093,8.00093 0 0 1 10.94141,2.8794 z M 219.96875,121.08984 128,174.73828 36.03125,121.08984 a 8.0000805,8.0000805 0 0 0 -8.0625,13.82032 l 96,56 a 8.00059,8.00059 0 0 0 8.0625,0 l 96,-56 a 8.0000805,8.0000805 0 0 0 -8.0625,-13.82032 z m -192,-34.17968 96,56 a 8.00059,8.00059 0 0 0 8.0625,0 l 96,-56 a 8.00016,8.00016 0 0 0 0,-13.82032 l -96,-56 a 8.00059,8.00059 0 0 0 -8.0625,0 l -96,56 a 8.00016,8.00016 0 0 0 0,13.82032 z"
+         id="path29-6"
+         style="fill:#ffffff" /></g></g></svg>

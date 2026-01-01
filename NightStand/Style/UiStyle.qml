@@ -61,18 +61,18 @@ Item {
     readonly property color green: UiSettings.darkTheme ? "#3ffc00" : "#02d10c"
 
     function imagePath(baseImagePath) {
-        return `qrc:/EncoderReader/images/${baseImagePath}.png`
+        return `qrc:/NightStand/Assets/images/${baseImagePath}.png`
     }
 
     function themeImagePath(baseImagePath) {
-        return `qrc:/EncoderReader/images/${baseImagePath}${(UiSettings.darkTheme ? "-dark" : "-light")}.svg`
+        return `qrc:/NightStand/Assets/images/${baseImagePath}${(UiSettings.darkTheme ? "-dark" : "-light")}.svg`
     }
 
     function iconPath(baseImagePath) {
-        return `qrc:/EncoderReader/icons/${baseImagePath}${(UiSettings.darkTheme ? "-dark" : "-light")}.svg`
+        return `qrc:/NightStand/Assets/icons/${baseImagePath}${(UiSettings.darkTheme ? "-dark" : "-light")}.svg`
     }
 
     function gifPath(baseImagePath) {
-        return `qrc:/EncoderReader/icons/${baseImagePath}${(UiSettings.darkTheme ? "-dark" : "-light")}.gif`
+        return `qrc:/NightStand/Assets/gifs/${baseImagePath}${(UiSettings.darkTheme ? "-dark" : "-light")}.gif`
     }
 }

@@ -35,6 +35,7 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Cards/ActivityItemCard.qml
         QML_FILES Widgets/Buttons/NavButton.qml
         QML_FILES Widgets/Cards/DashboardCard.qml
+        QML_FILES Views/ClockPage.qml
 
 )
 

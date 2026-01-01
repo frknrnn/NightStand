@@ -1,14 +1,18 @@
 import QtQuick
 import QtQuick.Controls as QQC2
 pragma ComponentBehavior: Bound
-import "../Style"
+                          import "../Style"
 import "../Views/Pages"
+import "../Widgets/Buttons"
 
 Rectangle{
     id:launcherPageBase
     anchors.fill : parent
     signal launched(string title, string page, string fallbackpage)
     color:UiStyle.baseColor
+    property int buttonWidth:60
+    property int buttonHeight:60
+    property int buttonRadius:60
 
     Column{
         anchors.fill:parent
@@ -47,49 +51,29 @@ Rectangle{
                         model: buttonModel
                         delegate: QQC2.RoundButton {
 
-                                width: bottomMenu.width / 8
-                                height: bottomMenu.height * 0.5
+                            width: launcherPageBase.buttonWidth
+                            height: launcherPageBase.buttonHeight
 
-                                required property string title
-                                required property string pageIcon
-                                required property string page
-                                required property string fallback
-                                required property int index
+                            required property string title
+                            required property string pageIcon
+                            required property string page
+                            required property string fallback
+                            required property int index
 
-                                background: Rectangle {
-                                    radius: parent.width / 10
-                                    border.width: 1.0
-                                    border.color: UiStyle.menuTextColor
-                                    color: UiStyle.menuButtonBackground
-                                }
+                            icon.source: UiStyle.iconPath(pageIcon)
+                            icon.width: 32
+                            icon.height: 32
 
-                                contentItem: Column {
-                                spacing: 4
-                                anchors.centerIn: parent
+                            background: Rectangle {
+                                radius: launcherPageBase.buttonRadius
+                                border.width: 1.0
+                                border.color: UiStyle.headerColor
+                                color: UiStyle.roundButtonColor
+                            }
 
-                                Image {
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    width: bottomMenu.height * 0.3
-                                    height: bottomMenu.height * 0.3
-                                    source: UiStyle.iconPath(pageIcon)
-                                    fillMode: Image.PreserveAspectFit
-                                }
-
-                                QQC2.Label{
-                                    text: title
-                                    font.pixelSize: 12
-                                    font.bold: true
-                                    color: UiStyle.basicTextColor
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                    elide: Text.ElideRight
-                                    width: parent.width
-                                }
-                                }
-
-                                onClicked: {
-                                    launcherPageBase.launched(title, Qt.resolvedUrl(page), Qt.resolvedUrl(fallback))
-                                }
+                            onClicked: {
+                                launcherPageBase.launched(title, Qt.resolvedUrl(page), Qt.resolvedUrl(fallback))
+                            }
                         }
                     }
                 }
@@ -98,11 +82,11 @@ Rectangle{
     }
 
     ListModel {
-    id:buttonModel
+        id:buttonModel
         ListElement {
-            title: qsTr("XYZ")
-            pageIcon: "stage3d"
-            page: "FirstStageControlPage.qml"
+            title: qsTr("Clock")
+            pageIcon: "clock"
+            page: "ClockPage.qml"
             fallback: ""
         }
     }

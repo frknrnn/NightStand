@@ -14,18 +14,20 @@ Rectangle {
 
     Rectangle {
             anchors.fill: parent
-            anchors.margins: 10
+            anchors.margins: 5
             color: UiStyle.cardPanelColor
             radius: 20
 
             ColumnLayout {
+                id:dashColumnLayout
                 anchors.fill: parent
-                anchors.margins: 30
-                spacing: 20
+                anchors.margins: 15
+                spacing: 5
 
-                // Header
                 RowLayout {
+                    id:firstRow
                     Layout.fillWidth: true
+                    Layout.preferredHeight: 55
                     spacing: 20
 
                     // Search Button
@@ -67,11 +69,12 @@ Rectangle {
                 // Main Content Grid
                 GridLayout {
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
+                    Layout.preferredHeight: (dashColumnLayout.height - firstRow.height) / 2
+
                     columns: 4
                     rows: 2
-                    columnSpacing: 20
-                    rowSpacing: 20
+                    columnSpacing: 5
+                    rowSpacing: 5
 
                     // Clock & Weather Card (2x2)
                     DashboardCard {
@@ -84,7 +87,7 @@ Rectangle {
 
                         ColumnLayout {
                             anchors.fill: parent
-                            anchors.margins: 25
+                            anchors.margins: 15
 
                             // Time
                             Text {
@@ -175,9 +178,9 @@ Rectangle {
                 // Bottom Section
                 GridLayout {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 200
+                    Layout.preferredHeight: (dashColumnLayout.height - firstRow.height) / 2
                     columns: 3
-                    columnSpacing: 20
+                    columnSpacing: 5
 
                     // AC Control Card
                     DashboardCard {
@@ -243,7 +246,7 @@ Rectangle {
                         ColumnLayout {
                             anchors.fill: parent
                             anchors.margins: 20
-                            spacing: 15
+                            spacing: 5
 
                             RowLayout {
                                 Layout.fillWidth: true

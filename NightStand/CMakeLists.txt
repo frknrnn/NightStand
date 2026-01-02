@@ -7,6 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt6 REQUIRED COMPONENTS Quick)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Core)
 
 qt_standard_project_setup(REQUIRES 6.2)
 
@@ -40,6 +43,9 @@ qt_add_qml_module(appNightStand
         QML_FILES Views/Settings.qml
         QML_FILES Views/TodoPage.qml
         QML_FILES Views/AlbumPage.qml
+        SOURCES ViewModels/appcontroller.h ViewModels/appcontroller.cpp
+        SOURCES Models/datetimemodel.h Models/datetimemodel.cpp
+        SOURCES ViewModels/datetimeviewmodel.h ViewModels/datetimeviewmodel.cpp
 
 )
 
@@ -57,6 +63,9 @@ set_target_properties(appNightStand PROPERTIES
 target_link_libraries(appNightStand
     PRIVATE Qt6::Quick
 )
+target_link_libraries(appNightStand PRIVATE Qt6::Core)
+target_link_libraries(appNightStand PRIVATE Qt6::Core)
+target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
 

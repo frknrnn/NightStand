@@ -91,44 +91,69 @@ Rectangle {
 
                             // Time
                             Text {
-                                text: "10:31"
+                                id: timeText
+                                text: dateTimeViewModel.currentTime
                                 font.pixelSize: 72
                                 font.bold: true
                                 color: UiStyle.textColor
+
+                                Behavior on text {
+                                    SequentialAnimation {
+                                        NumberAnimation {
+                                            target: timeText
+                                            property: "scale"
+                                            to: 1.05
+                                            duration: 100
+                                        }
+                                        NumberAnimation {
+                                            target: timeText
+                                            property: "scale"
+                                            to: 1.0
+                                            duration: 100
+                                        }
+                                    }
+                                }
+
                             }
 
                             Text {
-                                text: "Sep. 16, 2024, Mon"
-                                font.pixelSize: 16
+                                text: dateTimeViewModel.currentDate
+                                font.pixelSize: 24
+                                color: UiStyle.subtextColor
+                            }
+
+                            Text {
+                                text: dateTimeViewModel.dayOfWeek
+                                font.pixelSize: 24
                                 color: UiStyle.subtextColor
                             }
 
                             Item { Layout.fillHeight: true }
 
-                            // Weather
-                            RowLayout {
-                                spacing: 15
+                            // // Weather
+                            // RowLayout {
+                            //     spacing: 15
 
-                                Image {
-                                    source: "qrc:/icons/cloud-rain.svg"
-                                    sourceSize: Qt.size(60, 60)
-                                }
+                            //     Image {
+                            //         source: "qrc:/icons/cloud-rain.svg"
+                            //         sourceSize: Qt.size(60, 60)
+                            //     }
 
-                                ColumnLayout {
-                                    spacing: 5
-                                    Text {
-                                        text: "22°C"
-                                        font.pixelSize: 28
-                                        font.bold: true
-                                        color: UiStyle.textColor
-                                    }
-                                    Text {
-                                        text: "Cloudy to Rainy"
-                                        font.pixelSize: 14
-                                        color:UiStyle.subtextColor
-                                    }
-                                }
-                            }
+                            //     ColumnLayout {
+                            //         spacing: 5
+                            //         Text {
+                            //             text: "22°C"
+                            //             font.pixelSize: 28
+                            //             font.bold: true
+                            //             color: UiStyle.textColor
+                            //         }
+                            //         Text {
+                            //             text: "Cloudy to Rainy"
+                            //             font.pixelSize: 14
+                            //             color:UiStyle.subtextColor
+                            //         }
+                            //     }
+                            // }
                         }
                     }
 

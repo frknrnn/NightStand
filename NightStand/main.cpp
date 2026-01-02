@@ -1,5 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include "Models/modelmanager.h"
+#include "ViewModels/appcontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -7,6 +10,11 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    ModelManager* mngr = ModelManager::instance();
+    AppController appController;
+    engine.rootContext()->setContextProperty("dateTimeViewModel", appController.getDateTimeViewModel());
+
     const QUrl url(u"qrc:/NightStand/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

@@ -2,7 +2,7 @@ import QtQuick
 import "../Style"
 
 Rectangle {
-    id: clockpage
+    id: settingspage
     anchors.fill: parent;
     color: UiStyle.baseColor
 

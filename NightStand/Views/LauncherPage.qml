@@ -10,9 +10,9 @@ Rectangle{
     anchors.fill : parent
     signal launched(string title, string page, string fallbackpage)
     color:UiStyle.baseColor
-    property int buttonWidth:60
-    property int buttonHeight:60
-    property int buttonRadius:60
+    property int buttonWidth:70
+    property int buttonHeight:70
+    property int buttonRadius:70
 
     Column{
         anchors.fill:parent
@@ -89,6 +89,28 @@ Rectangle{
             page: "ClockPage.qml"
             fallback: ""
         }
+        
+        ListElement {
+            title: qsTr("To Do")
+            pageIcon: "todo"
+            page: "TodoPage.qml"
+            fallback: ""
+        }
+        
+        ListElement {
+            title: qsTr("Album")
+            pageIcon: "album"
+            page: "AlbumPage.qml"
+            fallback: ""
+        }
+        
+        ListElement {
+            title: qsTr("Settings")
+            pageIcon: "settings"
+            page: "Settings.qml"
+            fallback: ""
+        }
+
     }
 
 

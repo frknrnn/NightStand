@@ -46,6 +46,20 @@ qt_add_qml_module(appNightStand
         SOURCES ViewModels/appcontroller.h ViewModels/appcontroller.cpp
         SOURCES Models/datetimemodel.h Models/datetimemodel.cpp
         SOURCES ViewModels/datetimeviewmodel.h ViewModels/datetimeviewmodel.cpp
+        QML_FILES Widgets/Clock/DigitalClock.qml
+        QML_FILES Widgets/Clock/DateDisplay.qml
+        QML_FILES Widgets/Clock/AnalogClock.qml
+        QML_FILES Widgets/Clock/AlarmView.qml
+        QML_FILES Widgets/Clock/AlarmList.qml
+        QML_FILES Widgets/Clock/AlarmItem.qml
+        QML_FILES Widgets/Clock/AddAlarmButton.qml
+        QML_FILES Widgets/Clock/StopWatchView.qml
+        QML_FILES Widgets/Clock/StopWatchDisplay.qml
+        QML_FILES Widgets/Clock/StopWatchControls.qml
+        QML_FILES Widgets/Clock/StopWatchButton.qml
+        QML_FILES Widgets/Clock/BottomNavigationBar.qml
+        QML_FILES Widgets/Clock/NavigationIcon.qml
+        QML_FILES Widgets/Clock/ClockView.qml
 
 )
 

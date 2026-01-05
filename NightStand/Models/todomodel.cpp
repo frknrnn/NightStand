@@ -1,9 +1,36 @@
 #include "todomodel.h"
+#include "storageservice.h"
+
+// TodoItem JSON serialization
+QJsonObject TodoItem::toJson() const
+{
+    QJsonObject json;
+    json["id"] = id;
+    json["title"] = title;
+    json["description"] = description;
+    json["completed"] = completed;
+    json["createdAt"] = createdAt.toString(Qt::ISODate);
+    json["dueDate"] = dueDate.toString(Qt::ISODate);
+    return json;
+}
+
+TodoItem TodoItem::fromJson(const QJsonObject &json)
+{
+    TodoItem item;
+    item.id = json["id"].toInt();
+    item.title = json["title"].toString();
+    item.description = json["description"].toString();
+    item.completed = json["completed"].toBool();
+    item.createdAt = QDateTime::fromString(json["createdAt"].toString(), Qt::ISODate);
+    item.dueDate = QDateTime::fromString(json["dueDate"].toString(), Qt::ISODate);
+    return item;
+}
 
 TodoModel::TodoModel(QObject *parent)
     : QAbstractListModel(parent)
     , m_nextId(1)
 {
+    loadFromStorage();
 }
 
 int TodoModel::rowCount(const QModelIndex &parent) const
@@ -100,6 +127,7 @@ void TodoModel::addTodo(const QString &title, const QString &description)
     endInsertRows();
 
     emit todoCountChanged();
+    saveToStorage();
 }
 
 void TodoModel::removeTodo(int id)
@@ -117,6 +145,7 @@ void TodoModel::removeTodo(int id)
     emit todoCountChanged();
     if (wasCompleted)
         emit completedCountChanged();
+    saveToStorage();
 }
 
 void TodoModel::toggleCompleted(int id)
@@ -130,6 +159,7 @@ void TodoModel::toggleCompleted(int id)
     QModelIndex modelIndex = createIndex(index, 0);
     emit dataChanged(modelIndex, modelIndex, {CompletedRole});
     emit completedCountChanged();
+    saveToStorage();
 }
 
 void TodoModel::updateTodo(int id, const QString &title, const QString &description)
@@ -143,6 +173,7 @@ void TodoModel::updateTodo(int id, const QString &title, const QString &descript
 
     QModelIndex modelIndex = createIndex(index, 0);
     emit dataChanged(modelIndex, modelIndex, {TitleRole, DescriptionRole});
+    saveToStorage();
 }
 
 void TodoModel::clearCompleted()
@@ -156,6 +187,7 @@ void TodoModel::clearCompleted()
     }
     emit todoCountChanged();
     emit completedCountChanged();
+    saveToStorage();
 }
 
 QList<TodoItem> TodoModel::todos() const
@@ -185,4 +217,42 @@ int TodoModel::findTodoIndex(int id) const
             return i;
     }
     return -1;
+}
+
+void TodoModel::loadFromStorage()
+{
+    QJsonArray todosArray = StorageService::instance()->loadTodos();
+    
+    if (todosArray.isEmpty()) {
+        return;
+    }
+    
+    beginResetModel();
+    m_todos.clear();
+    m_nextId = 1;
+    
+    for (const QJsonValue &value : todosArray) {
+        if (value.isObject()) {
+            TodoItem item = TodoItem::fromJson(value.toObject());
+            m_todos.append(item);
+            if (item.id >= m_nextId) {
+                m_nextId = item.id + 1;
+            }
+        }
+    }
+    
+    endResetModel();
+    emit todoCountChanged();
+    emit completedCountChanged();
+}
+
+void TodoModel::saveToStorage()
+{
+    QJsonArray todosArray;
+    
+    for (const TodoItem &item : m_todos) {
+        todosArray.append(item.toJson());
+    }
+    
+    StorageService::instance()->saveTodos(todosArray);
 }

@@ -61,6 +61,7 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/NavigationIcon.qml
         QML_FILES Widgets/Clock/ClockView.qml
         SOURCES Models/todomodel.h Models/todomodel.cpp
+        SOURCES Models/storageservice.h Models/storageservice.cpp
         SOURCES ViewModels/todoviewmodel.h ViewModels/todoviewmodel.cpp
         QML_FILES Widgets/Todo/TodoItem.qml
         QML_FILES Widgets/Todo/TodoInput.qml

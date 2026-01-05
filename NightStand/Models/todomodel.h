@@ -3,6 +3,8 @@
 
 #include <QAbstractListModel>
 #include <QDateTime>
+#include <QJsonArray>
+#include <QJsonObject>
 
 struct TodoItem {
     int id;
@@ -11,6 +13,10 @@ struct TodoItem {
     bool completed;
     QDateTime createdAt;
     QDateTime dueDate;
+
+    // JSON serialization
+    QJsonObject toJson() const;
+    static TodoItem fromJson(const QJsonObject &json);
 };
 
 class TodoModel : public QAbstractListModel
@@ -42,6 +48,10 @@ public:
     Q_INVOKABLE void toggleCompleted(int id);
     Q_INVOKABLE void updateTodo(int id, const QString &title, const QString &description);
     Q_INVOKABLE void clearCompleted();
+
+    // Persistence
+    void loadFromStorage();
+    void saveToStorage();
 
     // Getters
     QList<TodoItem> todos() const;

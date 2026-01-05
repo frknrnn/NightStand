@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     ModelManager* mngr = ModelManager::instance();
     AppController appController;
     engine.rootContext()->setContextProperty("dateTimeViewModel", appController.getDateTimeViewModel());
+    engine.rootContext()->setContextProperty("todoViewModel", appController.getTodoViewModel());
 
     const QUrl url(u"qrc:/NightStand/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

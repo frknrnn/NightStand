@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "../Models/datetimemodel.h"
+#include "../Models/todomodel.h"
 
 class ModelManager : public QObject
 {
@@ -10,6 +11,7 @@ class ModelManager : public QObject
 public:
     static ModelManager *instance();
     DateTimeModel* GetDateTimeModel();
+    TodoModel* GetTodoModel();
     void init();
 
 private:
@@ -19,6 +21,7 @@ private:
     Q_DISABLE_COPY(ModelManager)
 
     DateTimeModel *m_dateTimeModel;
+    TodoModel *m_todoModel;
 
 signals:
 };

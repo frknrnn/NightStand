@@ -9,6 +9,7 @@ ModelManager::ModelManager(QObject *parent)
 void ModelManager::init()
 {
     m_dateTimeModel = new DateTimeModel();
+    m_todoModel = new TodoModel();
 }
 
 ModelManager* ModelManager::m_instance = nullptr;
@@ -24,6 +25,11 @@ ModelManager *ModelManager::instance()
 DateTimeModel* ModelManager::GetDateTimeModel()
 {
     return m_dateTimeModel;
+}
+
+TodoModel* ModelManager::GetTodoModel()
+{
+    return m_todoModel;
 }
 
 ModelManager::~ModelManager()

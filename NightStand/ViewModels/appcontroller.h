@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "../ViewModels/datetimeviewmodel.h"
+#include "../ViewModels/todoviewmodel.h"
 
 class AppController : public QObject
 {
@@ -10,10 +11,12 @@ class AppController : public QObject
 public:
     explicit AppController(QObject *parent = nullptr);
     DateTimeViewModel *getDateTimeViewModel() { return dateTimeViewModel; }
+    TodoViewModel *getTodoViewModel() { return todoViewModel; }
 
 
 private:
     DateTimeViewModel *dateTimeViewModel;
+    TodoViewModel *todoViewModel;
 
 signals:
 };

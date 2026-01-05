@@ -6,60 +6,26 @@ import "../AppSettings"
 Item {
     id: appstyle
 
+    // Core colors
     readonly property color baseColor: UiSettings.darkTheme ? "#000000" : "#FFFFFF"
     readonly property color cardPanelColor: UiSettings.darkTheme ? "#1a2942" : "#FFFFFF"
     readonly property color innerCardColor: UiSettings.darkTheme ? "#223548" : "#FFFFFF"
     readonly property color roundButtonColor: UiSettings.darkTheme ? "#2a3f5f" : "#FFFFFF"
-    readonly property color textColor: UiSettings.darkTheme ? "white" : "#FFFFFF"
-    readonly property color subtextColor: UiSettings.darkTheme ? "#7a8fa8" : "#FFFFFF"
-    readonly property color headerColor: UiSettings.darkTheme ? "#6366f1" : "#FFFFFF"
+    readonly property color textColor: UiSettings.darkTheme ? "#FFFFFF" : "#000000"
+    readonly property color subtextColor: UiSettings.darkTheme ? "#7a8fa8" : "#666666"
+    readonly property color headerColor: UiSettings.darkTheme ? "#6366f1" : "#4f46e5"
 
-    readonly property color menuPanelBackground: UiSettings.darkTheme ? "#1e1e1e" : "#EFE9E3"
-    readonly property color menuSecondPanelBackground: UiSettings.darkTheme ? "#0f0f0f" : "#D9CFC7"
-    readonly property color menuButtonBackground: UiSettings.darkTheme ? "#0f0f0f" : "#D9CFC7"
-    readonly property color menuButtonBackgroundPressed: UiSettings.darkTheme ? "#E16428" : "#FFFFFF"
-    readonly property color menuTextColor: UiSettings.darkTheme ? "#eb8e3d" : "#eb8e3d"
-    readonly property color basicTextColor: UiSettings.darkTheme ? "#FFFFFF" : "#000000"
-    readonly property color pasiveTextColor: UiSettings.darkTheme ? "#b4b4b4" : "#b4b4b4"
-    readonly property color titleBackgroundColor: UiSettings.darkTheme ? "#FFFFFF" : "#000000"
-    readonly property color listItemBackground: UiSettings.darkTheme ? "#0f0f0f" : "#D9CFC7"
-
-    readonly property color buttonGray: UiSettings.darkTheme ? "#808080" : "#f3f3f4"
-    readonly property color buttonGrayPressed: UiSettings.darkTheme ? "#707070" : "#cecfd5"
-    readonly property color buttonGrayOutLine: UiSettings.darkTheme ? "#0D0D0D" : "#999999"
-
-    readonly property color buttonBackground: UiSettings.darkTheme ? "#262626" : "#CCCCCC"
+    // Accent colors
     readonly property color buttonProgress: UiSettings.darkTheme ? "#28C878" : "#19545C"
-    readonly property color buttonBorderColor: UiSettings.darkTheme ? "#262626" : "#CAE0BC"
+    readonly property color menuTextColor: UiSettings.darkTheme ? "#eb8e3d" : "#eb8e3d"
 
-    readonly property color gradientOverlay1: "#00000000"
-    readonly property color gradientOverlay2: "#1E000000"
-
-    readonly property color background1: UiSettings.darkTheme ? "#00414A" : "#ABF2CE"
-    readonly property color background2: UiSettings.darkTheme ? "#07243E" : "#E6E6E6"
-    readonly property color background3: UiSettings.darkTheme ? "#262626" : "#E6E6E6"
-
-    readonly property color backgroundBase: UiSettings.darkTheme ? "#262626" : "#000000"
-    readonly property color backgroundPanelHeader: UiSettings.darkTheme ? "#262626" : "#053940"
-    readonly property color backgroundPanel: UiSettings.darkTheme ? "#262626" : "#002125"
-
-    readonly property color iconColor: UiSettings.darkTheme ? "#262626" : "#FFFFFF"
-    readonly property color titletextColor: UiSettings.darkTheme ? "#2CDE85" : "#898989"
-
-    readonly property color highlightColor: UiSettings.darkTheme ? "#33676E" : "#28C878"
-
-    readonly property color pageIndicatorColor: UiSettings.darkTheme ? "#00000000" : "#E6E6E6"
-    readonly property color indicatorOutlineColor: UiSettings.darkTheme ? "#707070" : "#999999"
-
-    readonly property color listHeader1: UiSettings.darkTheme ? "#9E00414A" : "#9E2CDE85"
-    readonly property color listHeader2: UiSettings.darkTheme ? "#9E0C1C1F" : "#9E00414A"
-
+    // Basic colors
     readonly property color white: "#FFFFFF"
     readonly property color black: "#000000"
-
+    readonly property color transparent: "transparent"
     readonly property color red: UiSettings.darkTheme ? "#fc0022" : "#d10210"
-    readonly property color green: UiSettings.darkTheme ? "#3ffc00" : "#02d10c"
 
+    // Helper functions
     function imagePath(baseImagePath) {
         return `qrc:/NightStand/Assets/images/${baseImagePath}.png`
     }

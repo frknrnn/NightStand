@@ -18,7 +18,7 @@ Rectangle {
     height: contentLayout.implicitHeight + 24
     radius: 12
     color: UiStyle.cardPanelColor
-    border.color: completed ? UiStyle.buttonProgress : "transparent"
+    border.color: completed ? UiStyle.buttonProgress : UiStyle.transparent
     border.width: completed ? 2 : 0
 
     RowLayout {
@@ -33,7 +33,7 @@ Rectangle {
             width: 28
             height: 28
             radius: 14
-            color: completed ? UiStyle.buttonProgress : "transparent"
+            color: completed ? UiStyle.buttonProgress : UiStyle.transparent
             border.color: completed ? UiStyle.buttonProgress : UiStyle.subtextColor
             border.width: 2
 

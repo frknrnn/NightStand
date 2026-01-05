@@ -23,7 +23,7 @@ Rectangle {
             height: 40
             radius: 8
             color: UiStyle.innerCardColor
-            border.color: titleField.activeFocus ? UiStyle.buttonProgress : "transparent"
+            border.color: titleField.activeFocus ? UiStyle.buttonProgress : UiStyle.transparent
             border.width: titleField.activeFocus ? 2 : 0
 
             TextField {
@@ -56,7 +56,7 @@ Rectangle {
                 height: 40
                 radius: 8
                 color: UiStyle.innerCardColor
-                border.color: descriptionField.activeFocus ? UiStyle.buttonProgress : "transparent"
+                border.color: descriptionField.activeFocus ? UiStyle.buttonProgress : UiStyle.transparent
                 border.width: descriptionField.activeFocus ? 2 : 0
 
                 TextField {

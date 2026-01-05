@@ -1,13 +1,14 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import "../../Style"
 
 Rectangle {
     property string roomName: "Room"
     property string category: "Lights"
     property int brightness: 50
 
-    color: "#223548"
+    color: UiStyle.innerCardColor
     radius: 12
 
     ColumnLayout {
@@ -21,7 +22,7 @@ Rectangle {
             Text {
                 text: category
                 font.pixelSize: 12
-                color: "#7a8fa8"
+                color: UiStyle.subtextColor
             }
         }
 
@@ -32,7 +33,7 @@ Rectangle {
                 text: roomName
                 font.pixelSize: 16
                 font.bold: true
-                color: "white"
+                color: UiStyle.white
             }
 
             Item { Layout.fillWidth: true }
@@ -41,7 +42,7 @@ Rectangle {
                 text: brightness + "%"
                 font.pixelSize: 18
                 font.bold: true
-                color: "white"
+                color: UiStyle.white
             }
         }
 
@@ -54,7 +55,7 @@ Rectangle {
                 implicitHeight: 36
                 text: "💡"
                 background: Rectangle {
-                    color: "#4ade80"
+                    color: UiStyle.buttonProgress
                     radius: 18
                 }
             }
@@ -64,7 +65,7 @@ Rectangle {
                 implicitHeight: 36
                 text: "🌙"
                 background: Rectangle {
-                    color: "#2a3f5f"
+                    color: UiStyle.roundButtonColor
                     radius: 18
                 }
             }
@@ -78,14 +79,14 @@ Rectangle {
                 background: Rectangle {
                     height: 8
                     radius: 4
-                    color: "#6366f1"
+                    color: UiStyle.headerColor
                     opacity: 0.3
 
                     Rectangle {
                         width: parent.width * (parent.parent.value / 100)
                         height: parent.height
                         radius: 4
-                        color: "#6366f1"
+                        color: UiStyle.headerColor
                     }
                 }
 
@@ -95,7 +96,7 @@ Rectangle {
                     width: 20
                     height: 20
                     radius: 10
-                    color: "white"
+                    color: UiStyle.white
                 }
             }
 
@@ -104,7 +105,7 @@ Rectangle {
                 implicitHeight: 36
                 text: "☀️"
                 background: Rectangle {
-                    color: "#2a3f5f"
+                    color: UiStyle.roundButtonColor
                     radius: 18
                 }
             }
@@ -114,7 +115,7 @@ Rectangle {
                 implicitHeight: 36
                 text: "⚙️"
                 background: Rectangle {
-                    color: "#2a3f5f"
+                    color: UiStyle.roundButtonColor
                     radius: 18
                 }
             }

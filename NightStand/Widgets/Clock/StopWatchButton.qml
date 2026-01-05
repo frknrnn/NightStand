@@ -11,7 +11,7 @@ Rectangle {
 
     radius: width / 2
     color: isPrimary ? UiStyle.headerColor : UiStyle.roundButtonColor
-    border.color: isPrimary ? "transparent" : UiStyle.headerColor
+    border.color: isPrimary ? UiStyle.transparent : UiStyle.headerColor
     border.width: isPrimary ? 0 : 2
 
     Text {
@@ -19,7 +19,7 @@ Rectangle {
         text: button.text
         font.pixelSize: isPrimary ? 18 : 14
         font.bold: isPrimary
-        color: isPrimary ? "white" : UiStyle.textColor
+        color: isPrimary ? UiStyle.white : UiStyle.textColor
     }
 
     MouseArea {

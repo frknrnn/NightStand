@@ -1,15 +1,16 @@
 // SceneCard.qml
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
+import "../../Style"
 
 Rectangle {
     property string sceneName: ""
     property string icon: ""
     property bool isActive: false
 
-    color: isActive ? "#2d4a6f" : "#223548"
+    color: isActive ? UiStyle.roundButtonColor : UiStyle.innerCardColor
     radius: 16
-    border.color: isActive ? "#4a6fa5" : "transparent"
+    border.color: isActive ? UiStyle.headerColor : UiStyle.transparent
     border.width: 2
 
     ColumnLayout {
@@ -25,7 +26,7 @@ Rectangle {
         Text {
             text: sceneName
             font.pixelSize: 14
-            color: "white"
+            color: UiStyle.white
             Layout.alignment: Qt.AlignHCenter
         }
     }

@@ -1,5 +1,6 @@
 // NavButton.qml
 import QtQuick 2.15
+import "../../Style"
 
 Item {
     property string text: ""
@@ -16,7 +17,7 @@ Item {
             id: buttonText
             text: parent.parent.text
             font.pixelSize: 14
-            color: isActive ? "#6366f1" : "#7a8fa8"
+            color: isActive ? UiStyle.headerColor : UiStyle.subtextColor
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -24,7 +25,7 @@ Item {
             width: parent.width
             height: 3
             radius: 1.5
-            color: "#6366f1"
+            color: UiStyle.headerColor
             visible: isActive
             anchors.horizontalCenter: parent.horizontalCenter
         }

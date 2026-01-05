@@ -57,7 +57,7 @@ Rectangle {
         width: 2
         height: 80
         radius: 1
-        color: "#ff4444"
+        color: UiStyle.red
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.verticalCenter
         anchors.bottomMargin: -1

@@ -17,7 +17,7 @@ Item {
         width: 40
         height: 40
         radius: 20
-        color: isActive ? UiStyle.headerColor : "transparent"
+        color: isActive ? UiStyle.headerColor : UiStyle.transparent
 
         Text {
             anchors.centerIn: parent

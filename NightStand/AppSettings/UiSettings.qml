@@ -6,7 +6,6 @@ Settings {
     property bool wireless
     property bool bluetooth
     property int brightness
-    property bool darkTheme:true
-    property int themeName
+    property string themeName: "dark"
     property bool demoMode
 }

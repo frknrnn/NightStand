@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "Models/modelmanager.h"
+#include "Models/thememanager.h"
 #include "ViewModels/appcontroller.h"
 
 int main(int argc, char *argv[])
@@ -12,9 +13,12 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     ModelManager* mngr = ModelManager::instance();
+    ThemeManager* themeManager = ThemeManager::instance();
     AppController appController;
+    
     engine.rootContext()->setContextProperty("dateTimeViewModel", appController.getDateTimeViewModel());
     engine.rootContext()->setContextProperty("todoViewModel", appController.getTodoViewModel());
+    engine.rootContext()->setContextProperty("themeManager", themeManager);
 
     const QUrl url(u"qrc:/NightStand/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

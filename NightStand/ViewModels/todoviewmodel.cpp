@@ -79,3 +79,26 @@ void TodoViewModel::onCompletedCountChanged()
     emit completedCountChanged();
     emit pendingCountChanged();
 }
+
+QString TodoViewModel::getPendingTodoTitle(int index) const
+{
+    QList<TodoItem> allTodos = m_model->todos();
+    QList<TodoItem> pendingTodos;
+    
+    for (const auto &todo : allTodos) {
+        if (!todo.completed) {
+            pendingTodos.append(todo);
+        }
+    }
+    
+    if (index >= 0 && index < pendingTodos.size()) {
+        return pendingTodos.at(index).title;
+    }
+    
+    return QString();
+}
+
+int TodoViewModel::getPendingTodoCount() const
+{
+    return pendingCount();
+}

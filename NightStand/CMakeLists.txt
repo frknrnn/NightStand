@@ -68,6 +68,7 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Todo/TodoInput.qml
         QML_FILES Widgets/Todo/TodoList.qml
         QML_FILES Widgets/Todo/TodoHeader.qml
+        QML_FILES Widgets/Todo/TodoPreviewCard.qml
         QML_FILES Widgets/Settings/SettingsColumn.qml
         QML_FILES Widgets/Settings/SettingsItem.qml
         QML_FILES Widgets/Settings/ThemeSelector.qml

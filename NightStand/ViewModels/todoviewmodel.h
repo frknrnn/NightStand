@@ -32,6 +32,10 @@ public:
     Q_INVOKABLE void toggleCompleted(int id);
     Q_INVOKABLE void updateTodo(int id, const QString &title, const QString &description);
     Q_INVOKABLE void clearCompleted();
+    
+    // Get pending todo at index (for preview card)
+    Q_INVOKABLE QString getPendingTodoTitle(int index) const;
+    Q_INVOKABLE int getPendingTodoCount() const;
 
 signals:
     void totalCountChanged();

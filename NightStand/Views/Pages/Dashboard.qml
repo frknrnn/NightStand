@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import "../../Widgets/Cards"
+import "../../Widgets/Todo"
 import "../../Style"
 
 Rectangle {
@@ -76,7 +77,7 @@ Rectangle {
                     columnSpacing: 5
                     rowSpacing: 5
 
-                    // Clock & Weather Card (2x2)
+                    // Clock 
                     DashboardCard {
                         Layout.row: 0
                         Layout.column: 0
@@ -207,59 +208,13 @@ Rectangle {
                     columns: 3
                     columnSpacing: 5
 
-                    // AC Control Card
+                    // Todo Preview Card
                     DashboardCard {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
-                        ColumnLayout {
+                        TodoPreviewCard {
                             anchors.fill: parent
-                            anchors.margins: 20
-
-                            RowLayout {
-                                Layout.fillWidth: true
-                                Text {
-                                    text: "Air Conditioner"
-                                    font.pixelSize: 16
-                                    color: UiStyle.subtextColor
-                                }
-                                Item { Layout.fillWidth: true }
-                                Text {
-                                    text: "Working ❄️"
-                                    font.pixelSize: 14
-                                    color: UiStyle.subtextColor
-                                }
-                            }
-
-                            Item { Layout.fillHeight: true }
-
-                            Text {
-                                text: "24°C"
-                                font.pixelSize: 48
-                                font.bold: true
-                                color: UiStyle.textColor
-                            }
-
-                            Text {
-                                text: "❄️ Cooling"
-                                font.pixelSize: 14
-                                color: UiStyle.subtextColor
-                            }
-
-                            Item { Layout.fillHeight: true }
-
-                            RowLayout {
-                                Layout.fillWidth: true
-                                Text {
-                                    text: "Settings"
-                                    font.pixelSize: 14
-                                    color: UiStyle.headerColor
-                                }
-                                Item { Layout.fillWidth: true }
-                                Switch {
-                                    checked: true
-                                }
-                            }
                         }
                     }
 
@@ -278,19 +233,19 @@ Rectangle {
                                 Text {
                                     text: "PIR Sensor"
                                     font.pixelSize: 16
-                                    color: "#7a8fa8"
+                                    color: UiStyle.subtextColor
                                 }
                                 Item { Layout.fillWidth: true }
                                 Rectangle {
                                     width: 60
                                     height: 24
-                                    color: "#2a3f5f"
+                                    color: UiStyle.roundButtonColor
                                     radius: 12
                                     Text {
                                         anchors.centerIn: parent
                                         text: "Low 🔋"
                                         font.pixelSize: 11
-                                        color: "#7a8fa8"
+                                        color: UiStyle.subtextColor
                                     }
                                 }
                             }
@@ -299,7 +254,7 @@ Rectangle {
                                 text: "Home secured"
                                 font.pixelSize: 20
                                 font.bold: true
-                                color: "white"
+                                color: UiStyle.textColor
                             }
 
                             ColumnLayout {
@@ -308,7 +263,7 @@ Rectangle {
                                 Text {
                                     text: "Activities:"
                                     font.pixelSize: 12
-                                    color: "#7a8fa8"
+                                    color: UiStyle.subtextColor
                                 }
 
                                 ActivityItemCard {
@@ -329,7 +284,7 @@ Rectangle {
                                 Rectangle {
                                     width: 30
                                     height: 30
-                                    color: "#2a3f5f"
+                                    color: UiStyle.roundButtonColor
                                     radius: 15
                                     Text {
                                         anchors.centerIn: parent
@@ -340,7 +295,7 @@ Rectangle {
                                 Text {
                                     text: "Security on"
                                     font.pixelSize: 14
-                                    color: "#7a8fa8"
+                                    color: UiStyle.subtextColor
                                 }
                             }
                         }

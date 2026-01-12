@@ -4,6 +4,7 @@
 #include <QObject>
 #include "../ViewModels/datetimeviewmodel.h"
 #include "../ViewModels/todoviewmodel.h"
+#include "../ViewModels/alarmviewmodel.h"
 
 class AppController : public QObject
 {
@@ -12,11 +13,13 @@ public:
     explicit AppController(QObject *parent = nullptr);
     DateTimeViewModel *getDateTimeViewModel() { return dateTimeViewModel; }
     TodoViewModel *getTodoViewModel() { return todoViewModel; }
+    AlarmViewModel *getAlarmViewModel() { return alarmViewModel; }
 
 
 private:
     DateTimeViewModel *dateTimeViewModel;
     TodoViewModel *todoViewModel;
+    AlarmViewModel *alarmViewModel;
 
 signals:
 };

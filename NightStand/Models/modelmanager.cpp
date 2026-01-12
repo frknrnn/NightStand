@@ -10,6 +10,7 @@ void ModelManager::init()
 {
     m_dateTimeModel = new DateTimeModel();
     m_todoModel = new TodoModel();
+    m_alarmModel = new AlarmModel();
 }
 
 ModelManager* ModelManager::m_instance = nullptr;
@@ -30,6 +31,11 @@ DateTimeModel* ModelManager::GetDateTimeModel()
 TodoModel* ModelManager::GetTodoModel()
 {
     return m_todoModel;
+}
+
+AlarmModel* ModelManager::GetAlarmModel()
+{
+    return m_alarmModel;
 }
 
 ModelManager::~ModelManager()

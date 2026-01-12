@@ -26,6 +26,10 @@ public:
     QJsonArray loadTodos();
     bool saveTodos(const QJsonArray &todos);
 
+    // Alarm specific operations
+    QJsonArray loadAlarms();
+    bool saveAlarms(const QJsonArray &alarms);
+
     // Initialize user data directory
     void initUserDataDirectory();
 

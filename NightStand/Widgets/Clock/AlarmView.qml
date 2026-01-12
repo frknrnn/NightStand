@@ -21,13 +21,34 @@ Item {
         }
 
         AlarmList {
+            id: alarmList
             Layout.fillWidth: true
             Layout.fillHeight: true
+            model: alarmViewModel.alarmModel
+
+            onDeleteAlarm: function(alarmId) {
+                alarmViewModel.removeAlarm(alarmId)
+            }
+
+            onToggleAlarm: function(alarmId) {
+                alarmViewModel.toggleEnabled(alarmId)
+            }
         }
 
         AddAlarmButton {
             Layout.fillWidth: true
             Layout.preferredHeight: 50
+
+            onClicked: addAlarmPopup.open()
+        }
+    }
+
+    AddAlarmPopup {
+        id: addAlarmPopup
+        parent: Overlay.overlay
+
+        onAlarmAdded: function(hour, minute, label) {
+            alarmViewModel.addAlarm(hour, minute, label)
         }
     }
 }

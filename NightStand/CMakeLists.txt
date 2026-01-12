@@ -53,6 +53,7 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/AlarmList.qml
         QML_FILES Widgets/Clock/AlarmItem.qml
         QML_FILES Widgets/Clock/AddAlarmButton.qml
+        QML_FILES Widgets/Clock/AddAlarmPopup.qml
         QML_FILES Widgets/Clock/StopWatchView.qml
         QML_FILES Widgets/Clock/StopWatchDisplay.qml
         QML_FILES Widgets/Clock/StopWatchControls.qml
@@ -61,9 +62,11 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/NavigationIcon.qml
         QML_FILES Widgets/Clock/ClockView.qml
         SOURCES Models/todomodel.h Models/todomodel.cpp
+        SOURCES Models/alarmmodel.h Models/alarmmodel.cpp
         SOURCES Models/storageservice.h Models/storageservice.cpp
         SOURCES Models/thememanager.h Models/thememanager.cpp
         SOURCES ViewModels/todoviewmodel.h ViewModels/todoviewmodel.cpp
+        SOURCES ViewModels/alarmviewmodel.h ViewModels/alarmviewmodel.cpp
         QML_FILES Widgets/Todo/TodoItem.qml
         QML_FILES Widgets/Todo/TodoInput.qml
         QML_FILES Widgets/Todo/TodoList.qml

@@ -3,24 +3,31 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import "../../Style"
 
-
 ListView {
     id: alarmList
     spacing: 10
     clip: true
 
-    model: ListModel {
-        ListElement { time: "07:00"; label: "Wake Up"; enabled: true }
-        ListElement { time: "12:30"; label: "Lunch"; enabled: false }
-        ListElement { time: "18:00"; label: "Dinner"; enabled: true }
-    }
+    signal deleteAlarm(int alarmId)
+    signal toggleAlarm(int alarmId)
 
     delegate: AlarmItem {
-        width: ListView.view.width
-        alarmTime: model.time
+        width: alarmList.width
+        alarmId: model.alarmId
+        alarmTime: model.timeString
         alarmLabel: model.label
         alarmEnabled: model.enabled
 
-        onEnabledChanged: model.enabled = alarmEnabled
+        onToggleEnabled: alarmList.toggleAlarm(alarmId)
+        onDeleteClicked: alarmList.deleteAlarm(alarmId)
+    }
+
+    // Empty state
+    Text {
+        anchors.centerIn: parent
+        visible: alarmList.count === 0
+        text: "No alarms set"
+        font.pixelSize: 16
+        color: UiStyle.subtextColor
     }
 }

@@ -5,4 +5,5 @@ AppController::AppController(QObject *parent)
 {
     dateTimeViewModel = new DateTimeViewModel();
     todoViewModel = new TodoViewModel();
+    alarmViewModel = new AlarmViewModel();
 }

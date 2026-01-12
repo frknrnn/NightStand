@@ -121,3 +121,20 @@ bool StorageService::saveTodos(const QJsonArray &todos)
     QJsonDocument doc(todos);
     return saveJsonFile(todoFilePath(), doc);
 }
+
+QJsonArray StorageService::loadAlarms()
+{
+    QJsonDocument doc = loadJsonFile(alarmFilePath());
+
+    if (doc.isNull() || !doc.isArray()) {
+        return QJsonArray();
+    }
+
+    return doc.array();
+}
+
+bool StorageService::saveAlarms(const QJsonArray &alarms)
+{
+    QJsonDocument doc(alarms);
+    return saveJsonFile(alarmFilePath(), doc);
+}

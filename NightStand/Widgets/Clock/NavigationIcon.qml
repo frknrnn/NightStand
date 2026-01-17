@@ -4,25 +4,51 @@ import "../../Style"
 Item {
     id: navIcon
 
-    property string iconText: ""
+    property string labelText: ""
     property bool isActive: false
 
     signal clicked()
 
-    width: 50
+    width: textLabel.implicitWidth + 20
     height: 50
 
-    Rectangle {
+    Text {
+        id: textLabel
         anchors.centerIn: parent
-        width: 40
-        height: 40
-        radius: 20
-        color: isActive ? UiStyle.headerColor : UiStyle.transparent
+        text: navIcon.labelText
+        font.pixelSize: isActive ? 18 : 14
+        font.weight: isActive ? Font.Bold : Font.Normal
+        color: isActive ? UiStyle.headerColor : UiStyle.subtextColor
+        opacity: isActive ? 1.0 : 0.6
 
-        Text {
-            anchors.centerIn: parent
-            text: navIcon.iconText
-            font.pixelSize: 24
+        Behavior on font.pixelSize {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.OutQuad
+            }
+        }
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.OutQuad
+            }
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: 200
+                easing.type: Easing.OutQuad
+            }
+        }
+
+        scale: isActive ? 1.1 : 1.0
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: 200
+                easing.type: Easing.OutQuad
+            }
         }
     }
 

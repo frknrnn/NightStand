@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import "../../Style"
-import "../../Widgets/Clock"
 
 Rectangle {
     id: navigationBar
@@ -10,26 +9,26 @@ Rectangle {
 
     signal pageClicked(int pageIndex)
 
-    color: UiStyle.cardPanelColor
+    color: "transparent"
 
     RowLayout {
         anchors.centerIn: parent
-        spacing: 60
+        spacing: 40
 
         NavigationIcon {
-            iconText: "🕐"
+            labelText: "Clock"
             isActive: currentPage === 0
             onClicked: navigationBar.pageClicked(0)
         }
 
         NavigationIcon {
-            iconText: "⏰"
+            labelText: "Alarm"
             isActive: currentPage === 1
             onClicked: navigationBar.pageClicked(1)
         }
 
         NavigationIcon {
-            iconText: "⏱️"
+            labelText: "Stopwatch"
             isActive: currentPage === 2
             onClicked: navigationBar.pageClicked(2)
         }

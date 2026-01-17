@@ -5,7 +5,7 @@ import "../../Style"
 
 Item {
     id: header
-    property alias title: labelText.text
+    //property alias title: labelText.text
     signal backClicked()
     height: 50
 
@@ -27,25 +27,6 @@ Item {
         icon.color: UiStyle.headerColor
         onClicked: header.backClicked()
     }
-
-    Rectangle{
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        color:UiStyle.cardPanelColor
-        width:labelText.width + 100
-        radius:10
-        height: 40
-        QQC2.Label {
-            id: labelText
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.horizontalCenter: parent.horizontalCenter
-            color: UiStyle.headerColor
-            font.pixelSize: 20
-            font.bold: true
-        }
-    }
-
-
 
     transform: Translate {
         Behavior on y { NumberAnimation { } }

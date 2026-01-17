@@ -30,7 +30,7 @@ QQC2.ApplicationWindow {
                                 if (createdPage.status !== Component.Ready)
                                     createdPage = Qt.createComponent(fallback)
                                 stackView.push(createdPage)
-                                header.title = title
+                                //header.title = title
                             }
             }
         }
@@ -40,7 +40,7 @@ QQC2.ApplicationWindow {
         id: header
         anchors.top: parent.top
         width: parent.width
-        title: ""
+        //title: ""
         enabled: stackView.depth > 1
         onBackClicked: stackView.pop()
     }

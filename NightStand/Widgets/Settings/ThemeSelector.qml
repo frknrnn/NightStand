@@ -85,6 +85,7 @@ Item {
             case "light": return "#F5F5F5"
             case "blue": return "#132f4c"
             case "purple": return "#2d2640"
+            case "forest": return "#1a3a22"
             default: return "#1a2942"
         }
     }
@@ -95,6 +96,7 @@ Item {
             case "light": return "Light Theme"
             case "blue": return "Blue Theme"
             case "purple": return "Purple Theme"
+            case "forest": return "Forest Theme"
             default: return themeName.charAt(0).toUpperCase() + themeName.slice(1)
         }
     }

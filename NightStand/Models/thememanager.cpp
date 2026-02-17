@@ -93,7 +93,7 @@ void ThemeManager::initDefaultThemes()
     purple.red = QColor("#f43f5e");
     m_themes["purple"] = purple;
 
-    // Forest theme (green)
+    // Forest theme
     ThemeColors forest;
     forest.baseColor = QColor("#0d1f12");
     forest.cardPanelColor = QColor("#1a3a22");

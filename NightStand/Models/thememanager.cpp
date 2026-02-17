@@ -92,6 +92,23 @@ void ThemeManager::initDefaultThemes()
     purple.transparent = QColor(Qt::transparent);
     purple.red = QColor("#f43f5e");
     m_themes["purple"] = purple;
+
+    // Forest theme
+    ThemeColors forest;
+    forest.baseColor = QColor("#0d1f12");
+    forest.cardPanelColor = QColor("#1a3a22");
+    forest.innerCardColor = QColor("#234d2d");
+    forest.roundButtonColor = QColor("#2d6039");
+    forest.textColor = QColor("#FFFFFF");
+    forest.subtextColor = QColor("#8bc49a");
+    forest.headerColor = QColor("#22c55e");
+    forest.buttonProgress = QColor("#10b981");
+    forest.menuTextColor = QColor("#fbbf24");
+    forest.white = QColor("#FFFFFF");
+    forest.black = QColor("#000000");
+    forest.transparent = QColor(Qt::transparent);
+    forest.red = QColor("#ef4444");
+    m_themes["forest"] = forest;
 }
 
 void ThemeManager::loadThemeColors()

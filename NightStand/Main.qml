@@ -52,4 +52,10 @@ QQC2.ApplicationWindow {
         anchors.fill: parent
     }
 
+    // Flash Overlay - white screen for flash/torch mode
+    FlashOverlay {
+        id: flashOverlay
+        anchors.fill: parent
+    }
+
 }

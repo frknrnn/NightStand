@@ -25,17 +25,17 @@ ThemeManager* ThemeManager::instance()
 
 void ThemeManager::initDefaultThemes()
 {
-    // Black theme (AMOLED-friendly pure black)
+    // Black theme (AMOLED-friendly pure black with yellow accents)
     ThemeColors black;
     black.baseColor = QColor("#000000");
     black.cardPanelColor = QColor("#0a0a0a");
     black.innerCardColor = QColor("#141414");
     black.roundButtonColor = QColor("#1f1f1f");
-    black.textColor = QColor("#FFFFFF");
-    black.subtextColor = QColor("#888888");
-    black.headerColor = QColor("#FFFFFF");
-    black.buttonProgress = QColor("#28C878");
-    black.menuTextColor = QColor("#eb8e3d");
+    black.textColor = QColor("#FFD700");       // Altın sarısı (ana metin)
+    black.subtextColor = QColor("#B8860B");    // Koyu altın (alt metin)
+    black.headerColor = QColor("#FFC107");     // Amber sarı (başlık)
+    black.buttonProgress = QColor("#FFD700");  // Altın sarısı (ilerleme)
+    black.menuTextColor = QColor("#FFEB3B");   // Parlak sarı (menü)
     black.white = QColor("#FFFFFF");
     black.black = QColor("#000000");
     black.transparent = QColor(Qt::transparent);

@@ -21,3 +21,16 @@ void AppController::toggleNightMode()
 {
     setNightMode(!m_nightMode);
 }
+
+void AppController::setFlashMode(bool enabled)
+{
+    if (m_flashMode != enabled) {
+        m_flashMode = enabled;
+        emit flashModeChanged();
+    }
+}
+
+void AppController::toggleFlashMode()
+{
+    setFlashMode(!m_flashMode);
+}

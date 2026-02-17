@@ -62,14 +62,21 @@ Rectangle {
                         }
                     }
 
-                    // Settings Button
+                    // Flash Button
                     RoundButton {
+                        id: flashButton
                         implicitWidth: 50
                         implicitHeight: 50
-                        icon.source: "qrc:/icons/settings.svg"
+                        icon.source: UiStyle.iconPath("sun")
+                        icon.width: 28
+                        icon.height: 28
+                        icon.color: UiStyle.textColor
                         background: Rectangle {
                             color: UiStyle.roundButtonColor
                             radius: 25
+                        }
+                        onClicked: {
+                            appController.toggleFlashMode()
                         }
                     }
                 }

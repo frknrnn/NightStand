@@ -31,14 +31,21 @@ Rectangle {
                     Layout.preferredHeight: 55
                     spacing: 20
 
-                    // Search Button
+                    // Night Mode Button
                     RoundButton {
+                        id: nightModeButton
                         implicitWidth: 50
                         implicitHeight: 50
-                        icon.source: "qrc:/icons/search.svg"
+                        icon.source: UiStyle.iconPath("darkmode")
+                        icon.width: 28
+                        icon.height: 28
+                        icon.color: UiStyle.textColor
                         background: Rectangle {
                             color: UiStyle.roundButtonColor
                             radius: 25
+                        }
+                        onClicked: {
+                            appController.toggleNightMode()
                         }
                     }
 

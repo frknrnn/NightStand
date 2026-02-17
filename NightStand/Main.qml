@@ -6,6 +6,7 @@ import "Views/Pages"
 import "Views"
 import "Widgets"
 import "Widgets/Page"
+import "Widgets/Clock"
 
 QQC2.ApplicationWindow {
     width: 1024
@@ -43,6 +44,12 @@ QQC2.ApplicationWindow {
         //title: ""
         enabled: stackView.depth > 1
         onBackClicked: stackView.pop()
+    }
+
+    // Night Mode Overlay - shows only clock and date on black background
+    NightModeOverlay {
+        id: nightModeOverlay
+        anchors.fill: parent
     }
 
 }

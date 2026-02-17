@@ -75,6 +75,7 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Settings/SettingsColumn.qml
         QML_FILES Widgets/Settings/SettingsItem.qml
         QML_FILES Widgets/Settings/ThemeSelector.qml
+        QML_FILES Widgets/Clock/NightModeOverlay.qml
 
 )
 

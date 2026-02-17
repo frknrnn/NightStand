@@ -5,12 +5,23 @@ Rectangle {
     id: nightModeOverlay
     anchors.fill: parent
     color: "#000000"
-    visible: appController.nightMode
+    // Control visibility through opacity for smooth transitions
+    // visible stays true during fade-out animation
+    visible: opacity > 0 || appController.nightMode
+    opacity: appController.nightMode ? 1.0 : 0.0
     z: 1000
+
+    Behavior on opacity {
+        NumberAnimation {
+            duration: 300
+            easing.type: Easing.InOutQuad
+        }
+    }
 
     // Exit night mode when tapped anywhere
     MouseArea {
         anchors.fill: parent
+        enabled: appController.nightMode
         onClicked: {
             appController.toggleNightMode()
         }
@@ -31,7 +42,7 @@ Rectangle {
 
             Timer {
                 interval: 1000
-                running: nightModeOverlay.visible
+                running: appController.nightMode
                 repeat: true
                 triggeredOnStart: true
                 onTriggered: {
@@ -50,7 +61,7 @@ Rectangle {
 
             Timer {
                 interval: 60000  // Update every minute
-                running: nightModeOverlay.visible
+                running: appController.nightMode
                 repeat: true
                 triggeredOnStart: true
                 onTriggered: {
@@ -61,16 +72,4 @@ Rectangle {
         }
     }
 
-    // Fade in/out animation
-    Behavior on visible {
-        enabled: false
-    }
-
-    opacity: visible ? 1.0 : 0.0
-    Behavior on opacity {
-        NumberAnimation {
-            duration: 300
-            easing.type: Easing.InOutQuad
-        }
-    }
 }

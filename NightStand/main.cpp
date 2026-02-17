@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     ThemeManager* themeManager = ThemeManager::instance();
     AppController appController;
     
+    engine.rootContext()->setContextProperty("appController", &appController);
     engine.rootContext()->setContextProperty("dateTimeViewModel", appController.getDateTimeViewModel());
     engine.rootContext()->setContextProperty("todoViewModel", appController.getTodoViewModel());
     engine.rootContext()->setContextProperty("alarmViewModel", appController.getAlarmViewModel());

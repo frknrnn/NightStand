@@ -5,7 +5,7 @@ ThemeManager* ThemeManager::m_instance = nullptr;
 
 ThemeManager::ThemeManager(QObject *parent)
     : QObject(parent)
-    , m_currentTheme("dark")
+    , m_currentTheme("black")
 {
     initDefaultThemes();
     loadThemeColors();
@@ -25,6 +25,23 @@ ThemeManager* ThemeManager::instance()
 
 void ThemeManager::initDefaultThemes()
 {
+    // Black theme (AMOLED-friendly pure black)
+    ThemeColors black;
+    black.baseColor = QColor("#000000");
+    black.cardPanelColor = QColor("#0a0a0a");
+    black.innerCardColor = QColor("#141414");
+    black.roundButtonColor = QColor("#1f1f1f");
+    black.textColor = QColor("#FFFFFF");
+    black.subtextColor = QColor("#888888");
+    black.headerColor = QColor("#FFFFFF");
+    black.buttonProgress = QColor("#28C878");
+    black.menuTextColor = QColor("#eb8e3d");
+    black.white = QColor("#FFFFFF");
+    black.black = QColor("#000000");
+    black.transparent = QColor(Qt::transparent);
+    black.red = QColor("#ff3b30");
+    m_themes["black"] = black;
+
     // Dark theme
     ThemeColors dark;
     dark.baseColor = QColor("#000000");

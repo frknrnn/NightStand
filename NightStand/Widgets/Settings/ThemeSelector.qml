@@ -81,6 +81,7 @@ Item {
 
     function getThemePreviewColor(themeName) {
         switch(themeName) {
+            case "black": return "#0a0a0a"
             case "dark": return "#1a2942"
             case "light": return "#F5F5F5"
             case "blue": return "#132f4c"
@@ -92,6 +93,7 @@ Item {
 
     function getThemeDisplayName(themeName) {
         switch(themeName) {
+            case "black": return "Black Theme"
             case "dark": return "Dark Theme"
             case "light": return "Light Theme"
             case "blue": return "Blue Theme"

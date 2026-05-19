@@ -9,13 +9,16 @@ Rectangle {
     anchors.fill: parent
     color: UiStyle.baseColor
 
+    property int filterMode: 0  // 0=All, 1=Active, 2=Completed
+
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 20
+        anchors.leftMargin: 24
+        anchors.rightMargin: 24
         anchors.topMargin: 60
-        spacing: 15
+        anchors.bottomMargin: 16
+        spacing: 14
 
-        // Header with stats
         TodoHeader {
             Layout.fillWidth: true
             totalCount: todoViewModel.totalCount
@@ -24,7 +27,6 @@ Rectangle {
             onClearCompleted: todoViewModel.clearCompleted()
         }
 
-        // Input for adding new todos
         TodoInput {
             Layout.fillWidth: true
             onAddTodo: (title, description) => {
@@ -32,12 +34,22 @@ Rectangle {
             }
         }
 
-        // Todo list
+        TodoFilterTabs {
+            Layout.fillWidth: true
+            selectedIndex: todopage.filterMode
+            totalCount: todoViewModel.totalCount
+            activeCount: todoViewModel.pendingCount
+            completedCount: todoViewModel.completedCount
+            onFilterChanged: (index) => todopage.filterMode = index
+        }
+
         TodoList {
             Layout.fillWidth: true
             Layout.fillHeight: true
             model: todoViewModel.todoModel
+            filterMode: todopage.filterMode
             totalCount: todoViewModel.totalCount
+            activeCount: todoViewModel.pendingCount
             completedCount: todoViewModel.completedCount
 
             onToggleCompleted: (id) => todoViewModel.toggleCompleted(id)

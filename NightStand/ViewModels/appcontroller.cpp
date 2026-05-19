@@ -34,3 +34,29 @@ void AppController::toggleFlashMode()
 {
     setFlashMode(!m_flashMode);
 }
+
+void AppController::setReadingMode(bool enabled)
+{
+    if (m_readingMode != enabled) {
+        m_readingMode = enabled;
+        emit readingModeChanged();
+    }
+}
+
+void AppController::toggleReadingMode()
+{
+    setReadingMode(!m_readingMode);
+}
+
+void AppController::setGalleryMode(bool enabled)
+{
+    if (m_galleryMode != enabled) {
+        m_galleryMode = enabled;
+        emit galleryModeChanged();
+    }
+}
+
+void AppController::toggleGalleryMode()
+{
+    setGalleryMode(!m_galleryMode);
+}

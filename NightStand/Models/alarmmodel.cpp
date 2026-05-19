@@ -117,13 +117,16 @@ QHash<int, QByteArray> AlarmModel::roleNames() const
     return roles;
 }
 
-void AlarmModel::addAlarm(int hour, int minute, const QString &label)
+int AlarmModel::addAlarm(int hour, int minute, const QString &label, const QVariantList &repeatDays)
 {
     AlarmItem item;
     item.id = m_nextId++;
     item.time = QTime(hour, minute);
     item.label = label.isEmpty() ? "Alarm" : label.trimmed();
     item.enabled = true;
+    for (const QVariant &day : repeatDays) {
+        item.repeatDays.append(day.toInt());
+    }
 
     beginInsertRows(QModelIndex(), m_alarms.count(), m_alarms.count());
     m_alarms.append(item);
@@ -132,6 +135,8 @@ void AlarmModel::addAlarm(int hour, int minute, const QString &label)
     emit alarmCountChanged();
     emit enabledCountChanged();
     saveToStorage();
+
+    return item.id;
 }
 
 void AlarmModel::removeAlarm(int id)

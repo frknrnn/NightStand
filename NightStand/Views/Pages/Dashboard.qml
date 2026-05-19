@@ -1,17 +1,22 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
+import "../../Widgets/Buttons"
 import "../../Widgets/Cards"
+import "../../Widgets/Clock"
 import "../../Widgets/Todo"
 import "../../Style"
 
 Rectangle {
+    id: dashboard
     anchors.fill: parent
     anchors.leftMargin:5
     anchors.rightMargin:5
     anchors.topMargin: 5
     anchors.bottomMargin: 5
     color: UiStyle.baseColor
+
+    property string countdownTarget: ""
 
     Rectangle {
             anchors.fill: parent
@@ -91,7 +96,7 @@ Rectangle {
                     columnSpacing: 5
                     rowSpacing: 5
 
-                    // Clock 
+                    // Clock
                     DashboardCard {
                         Layout.row: 0
                         Layout.column: 0
@@ -128,7 +133,6 @@ Rectangle {
                                         }
                                     }
                                 }
-
                             }
 
                             Text {
@@ -144,201 +148,97 @@ Rectangle {
                             }
 
                             Item { Layout.fillHeight: true }
-
-                            // // Weather
-                            // RowLayout {
-                            //     spacing: 15
-
-                            //     Image {
-                            //         source: "qrc:/icons/cloud-rain.svg"
-                            //         sourceSize: Qt.size(60, 60)
-                            //     }
-
-                            //     ColumnLayout {
-                            //         spacing: 5
-                            //         Text {
-                            //             text: "22°C"
-                            //             font.pixelSize: 28
-                            //             font.bold: true
-                            //             color: UiStyle.textColor
-                            //         }
-                            //         Text {
-                            //             text: "Cloudy to Rainy"
-                            //             font.pixelSize: 14
-                            //             color:UiStyle.subtextColor
-                            //         }
-                            //     }
-                            // }
                         }
                     }
 
-                    // Scene Cards (1x1 each)
-                    SceneCard {
+                    // Action buttons (2x2 grid on the right of the clock)
+                    ActionCard {
                         Layout.row: 0
                         Layout.column: 2
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-
-                        sceneName: "At Home"
-                        icon: "🏠"
-                        isActive: true
-                    }
-
-                    SceneCard {
-                        Layout.row: 0
-                        Layout.column: 3
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-
-                        sceneName: "Leave Home"
-                        icon: "🚗"
-                    }
-
-                    SceneCard {
-                        Layout.row: 1
-                        Layout.column: 2
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-
-                        sceneName: "Night"
+                        title: "Sleep"
                         icon: "🌙"
+                        onClicked: appController.toggleNightMode()
                     }
 
-                    SceneCard {
+                    ActionCard {
+                        Layout.row: 0
+                        Layout.column: 3
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        title: "Good Morning"
+                        icon: "☀️"
+                        onClicked: { /* TODO: morning routine */ }
+                    }
+
+                    ActionCard {
+                        Layout.row: 1
+                        Layout.column: 2
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        title: "Book"
+                        icon: "📖"
+                        onClicked: {
+                            dashboard.countdownTarget = "reading"
+                            countdownOverlay.running = true
+                        }
+                    }
+
+                    ActionCard {
                         Layout.row: 1
                         Layout.column: 3
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-
-                        sceneName: "Movie Watching"
-                        icon: "🎬"
+                        title: "Gallery"
+                        icon: "🖼️"
+                        onClicked: {
+                            dashboard.countdownTarget = "gallery"
+                            countdownOverlay.running = true
+                        }
                     }
                 }
 
-                // Bottom Section
+                // Bottom Section: Todo Preview + Ambiance
                 GridLayout {
                     Layout.fillWidth: true
                     Layout.preferredHeight: (dashColumnLayout.height - firstRow.height) / 2
                     columns: 3
                     columnSpacing: 5
 
-                    // Todo Preview Card
+                    // Todo Preview Card (spans 2 columns)
                     DashboardCard {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
+                        Layout.columnSpan: 2
 
                         TodoPreviewCard {
                             anchors.fill: parent
                         }
                     }
 
-                    // Security Card
-                    DashboardCard {
+                    // Ambiance button (single column, full height)
+                    ActionCard {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-
-                        ColumnLayout {
-                            anchors.fill: parent
-                            anchors.margins: 20
-                            spacing: 5
-
-                            RowLayout {
-                                Layout.fillWidth: true
-                                Text {
-                                    text: "PIR Sensor"
-                                    font.pixelSize: 16
-                                    color: UiStyle.subtextColor
-                                }
-                                Item { Layout.fillWidth: true }
-                                Rectangle {
-                                    width: 60
-                                    height: 24
-                                    color: UiStyle.roundButtonColor
-                                    radius: 12
-                                    Text {
-                                        anchors.centerIn: parent
-                                        text: "Low 🔋"
-                                        font.pixelSize: 11
-                                        color: UiStyle.subtextColor
-                                    }
-                                }
-                            }
-
-                            Text {
-                                text: "Home secured"
-                                font.pixelSize: 20
-                                font.bold: true
-                                color: UiStyle.textColor
-                            }
-
-                            ColumnLayout {
-                                spacing: 8
-
-                                Text {
-                                    text: "Activities:"
-                                    font.pixelSize: 12
-                                    color: UiStyle.subtextColor
-                                }
-
-                                ActivityItemCard {
-                                    text: "Someone has passed in Garden"
-                                    time: "20 min ago"
-                                }
-
-                                ActivityItemCard {
-                                    text: "Someone has passed in Garden"
-                                    time: "37 min ago"
-                                }
-                            }
-
-                            Item { Layout.fillHeight: true }
-
-                            RowLayout {
-                                Layout.fillWidth: true
-                                Rectangle {
-                                    width: 30
-                                    height: 30
-                                    color: UiStyle.roundButtonColor
-                                    radius: 15
-                                    Text {
-                                        anchors.centerIn: parent
-                                        text: "🛡️"
-                                        font.pixelSize: 14
-                                    }
-                                }
-                                Text {
-                                    text: "Security on"
-                                    font.pixelSize: 14
-                                    color: UiStyle.subtextColor
-                                }
-                            }
-                        }
-                    }
-
-                    // Room Controls
-                    ColumnLayout {
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        spacing: 15
-
-                        // Living Room Card
-                        ControlCard {
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            roomName: "Living room"
-                            brightness: 60
-                        }
-
-                        // Bedroom Card
-                        ControlCard {
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            roomName: "Bedroom"
-                            brightness: 20
-                            category: "Curtains"
-                        }
+                        title: "Ambiance"
+                        icon: "🎵"
+                        onClicked: { /* TODO: ambiance scene */ }
                     }
                 }
             }
         }
+
+    // 3-2-1 countdown overlay (covers Dashboard; routes to reading/gallery mode on finish)
+    CountdownOverlay {
+        id: countdownOverlay
+        onFinished: {
+            if (dashboard.countdownTarget === "reading") {
+                appController.readingMode = true
+            } else if (dashboard.countdownTarget === "gallery") {
+                appController.galleryMode = true
+            }
+            dashboard.countdownTarget = ""
+        }
+    }
 }

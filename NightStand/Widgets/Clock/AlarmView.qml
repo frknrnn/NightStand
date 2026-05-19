@@ -10,14 +10,37 @@ Item {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 20
-        spacing: 10
+        spacing: 14
 
-        Text {
-            Layout.alignment: Qt.AlignHCenter
-            text: "Alarms"
-            font.pixelSize: 24
-            font.bold: true
-            color: UiStyle.textColor
+        // Header row: title + Add button
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 12
+
+            ColumnLayout {
+                Layout.fillWidth: true
+                spacing: 2
+
+                Text {
+                    text: "Alarms"
+                    font.pixelSize: 26
+                    font.bold: true
+                    color: UiStyle.textColor
+                }
+
+                Text {
+                    text: alarmViewModel.enabledCount + " of " + alarmViewModel.totalCount + " active"
+                    font.pixelSize: 13
+                    color: UiStyle.subtextColor
+                }
+            }
+
+            AddAlarmButton {
+                Layout.preferredWidth: 160
+                Layout.preferredHeight: 48
+
+                onClicked: addAlarmPopup.openForCreate()
+            }
         }
 
         AlarmList {
@@ -33,13 +56,10 @@ Item {
             onToggleAlarm: function(alarmId) {
                 alarmViewModel.toggleEnabled(alarmId)
             }
-        }
 
-        AddAlarmButton {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 50
-
-            onClicked: addAlarmPopup.open()
+            onEditAlarm: function(alarmId, hour, minute, label, days) {
+                addAlarmPopup.openForEdit(alarmId, hour, minute, label, days)
+            }
         }
     }
 
@@ -47,8 +67,13 @@ Item {
         id: addAlarmPopup
         parent: Overlay.overlay
 
-        onAlarmAdded: function(hour, minute, label) {
-            alarmViewModel.addAlarm(hour, minute, label)
+        onAlarmAdded: function(hour, minute, label, days) {
+            var newId = alarmViewModel.addAlarm(hour, minute, label, days)
+        }
+
+        onAlarmUpdated: function(alarmId, hour, minute, label, days) {
+            alarmViewModel.updateAlarm(alarmId, hour, minute, label)
+            alarmViewModel.setRepeatDays(alarmId, days)
         }
     }
 }

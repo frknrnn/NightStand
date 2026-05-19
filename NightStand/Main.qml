@@ -58,4 +58,16 @@ QQC2.ApplicationWindow {
         anchors.fill: parent
     }
 
+    // Reading Overlay - full-screen book reading mode with brightness + warm palette
+    ReadingOverlay {
+        id: readingOverlay
+        anchors.fill: parent
+    }
+
+    // Gallery Overlay - animated gradient slideshow
+    GalleryOverlay {
+        id: galleryOverlay
+        anchors.fill: parent
+    }
+
 }

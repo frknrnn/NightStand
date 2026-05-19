@@ -38,6 +38,7 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Cards/ControlCard.qml
         QML_FILES Widgets/Cards/ActivityItemCard.qml
         QML_FILES Widgets/Buttons/NavButton.qml
+        QML_FILES Widgets/Buttons/LauncherMenuButton.qml
         QML_FILES Widgets/Cards/DashboardCard.qml
         QML_FILES Views/ClockPage.qml
         QML_FILES Views/Settings.qml
@@ -51,7 +52,9 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/AnalogClock.qml
         QML_FILES Widgets/Clock/AlarmView.qml
         QML_FILES Widgets/Clock/AlarmList.qml
-        QML_FILES Widgets/Clock/AlarmItem.qml
+        QML_FILES Widgets/Clock/AlarmCard.qml
+        QML_FILES Widgets/Clock/RepeatDaysSelector.qml
+        QML_FILES Widgets/Buttons/ModernToggle.qml
         QML_FILES Widgets/Clock/AddAlarmButton.qml
         QML_FILES Widgets/Clock/AddAlarmPopup.qml
         QML_FILES Widgets/Clock/StopWatchView.qml
@@ -78,6 +81,10 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Settings/ThemeSelector.qml
         QML_FILES Widgets/Clock/NightModeOverlay.qml
         QML_FILES Widgets/Clock/FlashOverlay.qml
+        QML_FILES Widgets/Buttons/ActionCard.qml
+        QML_FILES Widgets/Clock/CountdownOverlay.qml
+        QML_FILES Widgets/Clock/ReadingOverlay.qml
+        QML_FILES Widgets/Clock/GalleryOverlay.qml
 
 )
 

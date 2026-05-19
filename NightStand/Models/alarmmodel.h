@@ -42,7 +42,7 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     // Alarm operations
-    Q_INVOKABLE void addAlarm(int hour, int minute, const QString &label = QString());
+    Q_INVOKABLE int addAlarm(int hour, int minute, const QString &label = QString(), const QVariantList &repeatDays = QVariantList());
     Q_INVOKABLE void removeAlarm(int id);
     Q_INVOKABLE void toggleEnabled(int id);
     Q_INVOKABLE void updateAlarm(int id, int hour, int minute, const QString &label);

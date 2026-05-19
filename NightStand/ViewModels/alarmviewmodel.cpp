@@ -24,9 +24,9 @@ int AlarmViewModel::enabledCount() const
     return m_model->enabledCount();
 }
 
-void AlarmViewModel::addAlarm(int hour, int minute, const QString &label)
+int AlarmViewModel::addAlarm(int hour, int minute, const QString &label, const QVariantList &days)
 {
-    m_model->addAlarm(hour, minute, label);
+    return m_model->addAlarm(hour, minute, label, days);
 }
 
 void AlarmViewModel::removeAlarm(int id)

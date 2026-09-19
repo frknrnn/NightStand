@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import "../AppSettings"
 import "../Style"
 import "../Widgets/Settings"
 
@@ -42,20 +43,30 @@ Rectangle {
             }
         }
 
-        // Column 2: User Settings (Empty for now)
+        // Column 2: Robot character
         SettingsColumn {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            title: "User Settings"
+            title: "Robot Character"
 
-            content: Item {
+            content: ColumnLayout {
                 anchors.fill: parent
+                spacing: 10
 
                 Text {
-                    anchors.centerIn: parent
-                    text: "Coming Soon..."
+                    text: "Karakter"
                     font.pixelSize: 14
+                    font.bold: true
                     color: UiStyle.subtextColor
+                }
+
+                CharacterSelector {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    selectedId: UiSettings.robotCharacter
+                    onCharacterSelected: (id) => {
+                        UiSettings.robotCharacter = id
+                    }
                 }
             }
         }

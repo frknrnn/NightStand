@@ -89,6 +89,13 @@ Rectangle{
         }
         
         ListElement {
+            title: qsTr("Robot")
+            pageIcon: "robot"
+            page: "RobotPage.qml"
+            fallback: ""
+        }
+
+        ListElement {
             title: qsTr("Settings")
             pageIcon: "settings"
             page: "Settings.qml"

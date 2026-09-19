@@ -10,6 +10,10 @@ int main(int argc, char *argv[])
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
     QGuiApplication app(argc, argv);
 
+    // QSettings (UiSettings) bu isimler olmadan "Unknown Organization" altına yazıyor
+    QCoreApplication::setOrganizationName("NightStand");
+    QCoreApplication::setApplicationName("NightStand");
+
     QQmlApplicationEngine engine;
 
     ModelManager* mngr = ModelManager::instance();

@@ -13,4 +13,7 @@ Settings {
     property string clockMode: "analog"   // "analog" | "digital"
     property int analogClockStyle: 0      // 0..4
     property int digitalClockStyle: 0     // 0..4
+
+    // Robot page character
+    property string robotCharacter: "classic"   // "classic" | "eve"
 }

@@ -90,6 +90,17 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/CountdownOverlay.qml
         QML_FILES Widgets/Clock/ReadingOverlay.qml
         QML_FILES Widgets/Clock/GalleryOverlay.qml
+        QML_FILES Views/RobotPage.qml
+        QML_FILES Widgets/Robot/RobotFace.qml
+        QML_FILES Widgets/Robot/ExpressionButton.qml
+        QML_FILES Widgets/Robot/ExpressionBar.qml
+        QML_FILES Widgets/Robot/RobotSpeechBubble.qml
+        QML_FILES Widgets/Robot/RobotExpressions.js
+        QML_FILES Widgets/Robot/EveFace.qml
+        QML_FILES Widgets/Robot/RobotCharacter.qml
+        QML_FILES Widgets/Robot/ExpressionDrawer.qml
+        QML_FILES Widgets/Settings/CharacterSelector.qml
+        RESOURCES Assets/icons/robot-dark.svg Assets/icons/robot-light.svg Assets/icons/mono/robot.svg
         SOURCES Models/timermodel.h Models/timermodel.cpp
         SOURCES ViewModels/timerviewmodel.h ViewModels/timerviewmodel.cpp
         QML_FILES Widgets/Clock/TimerView.qml

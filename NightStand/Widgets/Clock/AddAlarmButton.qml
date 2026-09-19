@@ -29,7 +29,7 @@ Rectangle {
             text: "+"
             font.pixelSize: 22
             font.bold: true
-            color: UiStyle.white
+            color: UiStyle.onHeaderColor
         }
 
         Text {
@@ -37,7 +37,7 @@ Rectangle {
             text: "Add Alarm"
             font.pixelSize: 16
             font.bold: true
-            color: UiStyle.white
+            color: UiStyle.onHeaderColor
         }
     }
 

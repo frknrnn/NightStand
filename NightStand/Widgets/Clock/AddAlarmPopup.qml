@@ -236,7 +236,7 @@ Popup {
                     text: isEditing ? "Update" : "Save"
                     font.pixelSize: 18
                     font.bold: true
-                    color: UiStyle.white
+                    color: UiStyle.onHeaderColor
                 }
 
                 MouseArea {

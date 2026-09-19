@@ -72,7 +72,7 @@ Item {
                         text: modelData.label
                         font.pixelSize: 16
                         font.bold: true
-                        color: root.isSelected(modelData.day) ? UiStyle.white : UiStyle.subtextColor
+                        color: root.isSelected(modelData.day) ? UiStyle.onHeaderColor : UiStyle.subtextColor
                     }
 
                     MouseArea {

@@ -25,6 +25,10 @@ Item {
     readonly property color transparent: themeManager.transparent
     readonly property color red: themeManager.red
 
+    // headerColor zemin olarak kullanıldığında üstüne gelen yazı/ikon rengi.
+    // black temada headerColor beyaz olduğu için sabit beyaz metin görünmez oluyordu.
+    readonly property color onHeaderColor: contrastOn(headerColor)
+
     // Theme management
     readonly property string currentTheme: themeManager.currentTheme
     readonly property var availableThemes: themeManager.availableThemes
@@ -36,6 +40,17 @@ Item {
     }
 
     // Helper functions
+
+    // Verilen zemin rengine göre okunabilir bir ön plan rengi döndürür.
+    // Parlaklık eşiği, mevcut temaların accent renklerini beyaz bırakıp
+    // sadece açık tonlu accent'lerde (black teması) siyaha düşecek şekilde seçildi.
+    function contrastOn(backgroundColor) {
+        var luminance = 0.299 * backgroundColor.r
+                      + 0.587 * backgroundColor.g
+                      + 0.114 * backgroundColor.b
+        return luminance > 0.6 ? black : white
+    }
+
     function imagePath(baseImagePath) {
         return `qrc:/NightStand/Assets/images/${baseImagePath}.png`
     }

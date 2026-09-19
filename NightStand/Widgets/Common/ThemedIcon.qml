@@ -29,7 +29,8 @@ ControlsImpl.IconImage {
 
     smooth: true
 
-    // Boş source -> status Null, hiçbir şey çizilmez. Gizlemek ayrıca
-    // RowLayout/ColumnLayout'un boş bir yer ayırmasını da engeller.
-    visible: root.source.toString() !== ""
+    // `visible` bilerek bağlanmıyor: Qt 6'da `url` özelliği JS'e URL nesnesi
+    // olarak açılıyor ve `source.toString()` üzerine kurulan bir binding
+    // source değiştiğinde yeniden değerlendirilmiyor - ikon kalıcı olarak
+    // gizli kalıyordu. Boş source zaten status Null verip hiçbir şey çizmez.
 }

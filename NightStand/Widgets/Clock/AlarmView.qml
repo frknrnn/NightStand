@@ -12,16 +12,19 @@ Item {
         anchors.margins: 20
         spacing: 14
 
-        // Header row: title + Add button
+        // Header row: title + Add button, right aligned
         RowLayout {
             Layout.fillWidth: true
             spacing: 12
 
+            Item { Layout.fillWidth: true }
+
             ColumnLayout {
-                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignVCenter
                 spacing: 2
 
                 Text {
+                    Layout.alignment: Qt.AlignRight
                     text: "Alarms"
                     font.pixelSize: 26
                     font.bold: true
@@ -29,6 +32,7 @@ Item {
                 }
 
                 Text {
+                    Layout.alignment: Qt.AlignRight
                     text: alarmViewModel.enabledCount + " of " + alarmViewModel.totalCount + " active"
                     font.pixelSize: 13
                     color: UiStyle.subtextColor
@@ -36,6 +40,7 @@ Item {
             }
 
             AddAlarmButton {
+                Layout.alignment: Qt.AlignVCenter
                 Layout.preferredWidth: 160
                 Layout.preferredHeight: 48
 

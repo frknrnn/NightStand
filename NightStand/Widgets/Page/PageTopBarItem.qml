@@ -24,7 +24,7 @@ Item {
         icon.width:  50
         icon.height: 50
         icon.source: UiStyle.iconPath("back")
-        icon.color: UiStyle.headerColor
+        icon.color: UiStyle.textColor
         onClicked: header.backClicked()
     }
 

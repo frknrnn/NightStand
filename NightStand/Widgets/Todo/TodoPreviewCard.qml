@@ -1,206 +1,195 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.15
+import QtQuick
+import QtQuick.Layouts
+import "../Common"
 import "../../Style"
 
-Item {
+Rectangle {
     id: root
-    
-    property int currentIndex: 0
-    property int displayInterval: 10000 // 10 seconds
-    
-    // Get pending todo count from viewmodel
-    readonly property int pendingCount: todoViewModel ? todoViewModel.getPendingTodoCount() : 0
-    
+
+    signal clicked()
+
+    // TodoViewModel'in NOTIFY sinyalli Q_PROPERTY'lerine bağlı - tek seferlik
+    // Q_INVOKABLE'lara değil. Eski kartın hiç güncellenmemesinin sebebi buydu.
+    readonly property int totalCount:     todoViewModel ? todoViewModel.totalCount     : 0
+    readonly property int completedCount: todoViewModel ? todoViewModel.completedCount : 0
+    readonly property int pendingCount:   todoViewModel ? todoViewModel.pendingCount   : 0
+    readonly property real progress: totalCount > 0 ? completedCount / totalCount : 0
+
+    // DashboardCard / ActionCard ile aynı görünüm - hiçbir şey kaymıyor.
+    radius: 16
+    color: UiStyle.innerCardColor
+    border.width: 2
+    border.color: cardArea.containsMouse ? UiStyle.headerColor : UiStyle.transparent
+
+    scale:   cardArea.pressed ? 0.98 : 1.0
+    opacity: cardArea.pressed ? 0.92 : 1.0
+
+    Behavior on scale        { NumberAnimation { duration: 150; easing.type: Easing.OutQuad } }
+    Behavior on opacity      { NumberAnimation { duration: 150; easing.type: Easing.OutQuad } }
+    Behavior on border.color { ColorAnimation  { duration: 150 } }
+
+    // Tek sayaç: büyük rakam + küçük büyükharf etiket.
+    component StatColumn: ColumnLayout {
+        property int value: 0
+        property string caption: ""
+        property color tone: UiStyle.textColor
+
+        spacing: 2
+
+        Text {
+            Layout.alignment: Qt.AlignHCenter
+            text: value
+            font.pixelSize: 38
+            font.bold: true
+            color: tone
+            Behavior on color { ColorAnimation { duration: 200 } }
+        }
+
+        Text {
+            Layout.alignment: Qt.AlignHCenter
+            text: caption
+            font.pixelSize: 11
+            font.bold: true
+            font.letterSpacing: 1.0
+            color: UiStyle.subtextColor
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 20
-        spacing: 10
-        
-        // Header
+        anchors.margins: 18
+        spacing: 12
+
+        // ---------- başlık ----------
         RowLayout {
             Layout.fillWidth: true
-            
-            Text {
-                text: "📋 Pending Tasks"
-                font.pixelSize: 16
-                font.bold: true
-                color: UiStyle.subtextColor
+            Layout.preferredHeight: 24
+            spacing: 10
+
+            ThemedIcon {
+                source: UiStyle.monoIconPath("clipboard-list")
+                size: 20
+                color: UiStyle.textColor
             }
-            
-            Item { Layout.fillWidth: true }
-            
-            Rectangle {
-                width: 50
-                height: 24
-                color: UiStyle.roundButtonColor
-                radius: 12
-                
-                Text {
-                    anchors.centerIn: parent
-                    text: pendingCount.toString()
-                    font.pixelSize: 12
-                    font.bold: true
-                    color: UiStyle.headerColor
-                }
-            }
-        }
-        
-        Item { Layout.fillHeight: true }
-        
-        // Todo display area with animation
-        Item {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 80
-            
-            // Current todo text
+
             Text {
-                id: todoText
-                anchors.centerIn: parent
-                width: parent.width
-                
-                text: {
-                    if (pendingCount === 0) {
-                        return "✨ All tasks completed!"
-                    }
-                    var title = todoViewModel ? todoViewModel.getPendingTodoTitle(currentIndex) : ""
-                    return title || "No tasks"
-                }
-                
-                font.pixelSize: pendingCount > 0 ? 24 : 20
+                text: qsTr("Tasks")
+                font.pixelSize: 17
                 font.bold: true
                 color: UiStyle.textColor
-                horizontalAlignment: Text.AlignHCenter
-                wrapMode: Text.WordWrap
-                elide: Text.ElideRight
-                maximumLineCount: 2
-                
-                // Fade animation
-                opacity: 1
-                
-                Behavior on opacity {
-                    NumberAnimation {
-                        duration: 500
-                        easing.type: Easing.InOutQuad
-                    }
-                }
             }
-        }
-        
-        Item { Layout.fillHeight: true }
-        
-        // Progress indicator (dots)
-        Row {
-            Layout.alignment: Qt.AlignHCenter
-            spacing: 8
-            visible: pendingCount > 1
-            
-            Repeater {
-                model: Math.min(pendingCount, 5) // Max 5 dots
-                
-                Rectangle {
-                    width: index === (currentIndex % Math.min(pendingCount, 5)) ? 12 : 8
-                    height: index === (currentIndex % Math.min(pendingCount, 5)) ? 12 : 8
-                    radius: width / 2
-                    color: index === (currentIndex % Math.min(pendingCount, 5)) 
-                           ? UiStyle.headerColor 
-                           : UiStyle.roundButtonColor
-                    
-                    Behavior on width {
-                        NumberAnimation { duration: 200 }
-                    }
-                    Behavior on height {
-                        NumberAnimation { duration: 200 }
-                    }
-                    Behavior on color {
-                        ColorAnimation { duration: 200 }
-                    }
-                }
-            }
-            
-            // Show "..." if more than 5 todos
-            Text {
-                visible: pendingCount > 5
-                text: "..."
-                font.pixelSize: 12
+
+            Item { Layout.fillWidth: true }
+
+            // "Bu kart bir yere gider" işareti
+            ThemedIcon {
+                source: UiStyle.monoIconPath("chevron-right")
+                size: 18
                 color: UiStyle.subtextColor
-                anchors.verticalCenter: parent.verticalCenter
+                opacity: cardArea.containsMouse ? 1.0 : 0.55
+                Behavior on opacity { NumberAnimation { duration: 150 } }
             }
         }
-        
-        // Footer info
+
+        Item { Layout.fillHeight: true; Layout.minimumHeight: 0 }
+
+        // ---------- bekleyen / toplam / tamamlanan ----------
         RowLayout {
             Layout.fillWidth: true
-            
-            Text {
-                text: pendingCount > 0 
-                      ? (currentIndex + 1) + " / " + pendingCount 
-                      : ""
-                font.pixelSize: 14
-                color: UiStyle.subtextColor
+            spacing: 0
+
+            StatColumn {
+                Layout.fillWidth: true
+                value: root.pendingCount
+                caption: qsTr("PENDING")
+                tone: UiStyle.textColor
             }
-            
-            Item { Layout.fillWidth: true }
-            
-            Text {
-                text: "View All →"
-                font.pixelSize: 14
-                color: UiStyle.headerColor
-                
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        // Navigate to todo page - can be connected later
-                        console.log("Navigate to Todo page")
-                    }
+
+            Rectangle {
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 44
+                Layout.alignment: Qt.AlignVCenter
+                color: UiStyle.subtextColor
+                opacity: 0.25
+            }
+
+            StatColumn {
+                Layout.fillWidth: true
+                value: root.totalCount
+                caption: qsTr("TOTAL")
+                tone: UiStyle.subtextColor
+            }
+
+            Rectangle {
+                Layout.preferredWidth: 1
+                Layout.preferredHeight: 44
+                Layout.alignment: Qt.AlignVCenter
+                color: UiStyle.subtextColor
+                opacity: 0.25
+            }
+
+            StatColumn {
+                Layout.fillWidth: true
+                value: root.completedCount
+                caption: qsTr("COMPLETED")
+                tone: UiStyle.buttonProgress
+            }
+        }
+
+        // ---------- ilerleme ----------
+        Item {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 26
+            visible: root.totalCount > 0
+
+            Rectangle {
+                id: track
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                height: 6
+                radius: 3
+                color: UiStyle.roundButtonColor
+
+                Rectangle {
+                    height: parent.height
+                    radius: parent.radius
+                    width: parent.width * root.progress
+                    color: UiStyle.buttonProgress
+                    Behavior on width { NumberAnimation { duration: 400; easing.type: Easing.OutCubic } }
                 }
             }
-        }
-    }
-    
-    // Timer for cycling through todos
-    Timer {
-        id: cycleTimer
-        interval: displayInterval
-        running: pendingCount > 1
-        repeat: true
-        
-        onTriggered: {
-            // Fade out
-            todoText.opacity = 0
-            
-            // Change index after fade out
-            fadeTimer.start()
-        }
-    }
-    
-    // Timer to change text after fade out
-    Timer {
-        id: fadeTimer
-        interval: 500
-        repeat: false
-        
-        onTriggered: {
-            // Move to next todo
-            if (pendingCount > 0) {
-                currentIndex = (currentIndex + 1) % pendingCount
+
+            Text {
+                anchors.left: parent.left
+                anchors.top: track.bottom
+                anchors.topMargin: 6
+                text: qsTr("%1 of %2 completed").arg(root.completedCount).arg(root.totalCount)
+                font.pixelSize: 12
+                color: UiStyle.subtextColor
             }
-            // Fade in
-            todoText.opacity = 1
+        }
+
+        // ---------- boş durum ----------
+        // İlerleme bloğuyla aynı 26 px'lik yuvayı kaplıyor; ilk görev
+        // eklendiğinde kart zıplamasın diye.
+        Text {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 26
+            visible: root.totalCount === 0
+            text: qsTr("No tasks yet - tap to add one")
+            font.pixelSize: 13
+            color: UiStyle.subtextColor
+            verticalAlignment: Text.AlignVCenter
         }
     }
-    
-    // Reset index when pending count changes
-    onPendingCountChanged: {
-        if (currentIndex >= pendingCount && pendingCount > 0) {
-            currentIndex = 0
-        }
-        todoText.opacity = 1
-    }
-    
-    // Initial state
-    Component.onCompleted: {
-        currentIndex = 0
+
+    // En sonda tanımlanıyor ki layout'un üstünde kalsın ve her basmayı yakalasın.
+    MouseArea {
+        id: cardArea
+        anchors.fill: parent
+        hoverEnabled: true
+        cursorShape: Qt.PointingHandCursor
+        onClicked: root.clicked()
     }
 }

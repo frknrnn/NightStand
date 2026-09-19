@@ -1,4 +1,5 @@
 import QtQuick
+import "../Common"
 import "../../Style"
 
 Item {
@@ -24,16 +25,11 @@ Item {
         Behavior on scale { NumberAnimation { duration: 150; easing.type: Easing.OutQuad } }
         Behavior on opacity { NumberAnimation { duration: 150; easing.type: Easing.OutQuad } }
 
-        Image {
+        ThemedIcon {
             anchors.centerIn: parent
             source: root.iconSource
-            sourceSize.width: 28
-            sourceSize.height: 28
-            width: 28
-            height: 28
-            smooth: true
-            mipmap: true
-            fillMode: Image.PreserveAspectFit
+            size: 28
+            color: UiStyle.textColor
         }
 
         MouseArea {

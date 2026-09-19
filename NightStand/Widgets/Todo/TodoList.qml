@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "../Common"
 import "../../Style"
 
 Item {
@@ -107,15 +108,16 @@ Item {
                     radius: 48
                     color: UiStyle.cardPanelColor
 
-                    Text {
+                    ThemedIcon {
                         anchors.centerIn: parent
-                        text: {
-                            if (todoList.totalCount === 0) return "📝"
-                            if (todoList.filterMode === 1) return "✨"
-                            if (todoList.filterMode === 2) return "🎯"
-                            return "📝"
+                        size: 44
+                        color: UiStyle.subtextColor
+                        source: {
+                            if (todoList.totalCount === 0) return UiStyle.monoIconPath("clipboard-list")
+                            if (todoList.filterMode === 1) return UiStyle.monoIconPath("check-circle")
+                            if (todoList.filterMode === 2) return UiStyle.monoIconPath("target")
+                            return UiStyle.monoIconPath("clipboard-list")
                         }
-                        font.pixelSize: 44
                     }
                 }
 

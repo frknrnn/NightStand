@@ -28,9 +28,12 @@ QQC2.ApplicationWindow {
             initialItem: LauncherPage {
                 onLaunched: (title, page, fallback) => {
                                 var createdPage = Qt.createComponent(page)
-                                if (createdPage.status !== Component.Ready)
+                                if (createdPage.status !== Component.Ready && fallback !== "")
                                     createdPage = Qt.createComponent(fallback)
-                                stackView.push(createdPage)
+                                if (createdPage.status === Component.Ready)
+                                    stackView.push(createdPage)
+                                else
+                                    console.warn("LauncherPage: sayfa yüklenemedi", page, "-", createdPage.errorString())
                                 //header.title = title
                             }
             }

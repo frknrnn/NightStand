@@ -18,6 +18,9 @@ Rectangle {
 
     property string countdownTarget: ""
 
+    // LauncherPage'e kabarcıklanır, o da StackView için `launched` olarak yeniden yayar.
+    signal openPage(string title, string page)
+
     Rectangle {
             anchors.fill: parent
             anchors.margins: 5
@@ -60,7 +63,10 @@ Rectangle {
                     RoundButton {
                         implicitWidth: 50
                         implicitHeight: 50
-                        icon.source: "qrc:/icons/user.svg"
+                        icon.source: UiStyle.monoIconPath("user")
+                        icon.width: 28
+                        icon.height: 28
+                        icon.color: UiStyle.textColor
                         background: Rectangle {
                             color: UiStyle.roundButtonColor
                             radius: 25
@@ -158,7 +164,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         title: "Sleep"
-                        icon: "🌙"
+                        iconSource: UiStyle.monoIconPath("moon")
                         onClicked: appController.toggleNightMode()
                     }
 
@@ -168,7 +174,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         title: "Good Morning"
-                        icon: "☀️"
+                        iconSource: UiStyle.monoIconPath("sunrise")
                         onClicked: { /* TODO: morning routine */ }
                     }
 
@@ -178,7 +184,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         title: "Book"
-                        icon: "📖"
+                        iconSource: UiStyle.monoIconPath("book")
                         onClicked: {
                             dashboard.countdownTarget = "reading"
                             countdownOverlay.running = true
@@ -191,7 +197,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         title: "Gallery"
-                        icon: "🖼️"
+                        iconSource: UiStyle.monoIconPath("image")
                         onClicked: {
                             dashboard.countdownTarget = "gallery"
                             countdownOverlay.running = true
@@ -206,15 +212,13 @@ Rectangle {
                     columns: 3
                     columnSpacing: 5
 
-                    // Todo Preview Card (spans 2 columns)
-                    DashboardCard {
+                    // Tasks kartı (2 sütun) - dokunca doğrudan Todo sayfasına
+                    TodoPreviewCard {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         Layout.columnSpan: 2
-
-                        TodoPreviewCard {
-                            anchors.fill: parent
-                        }
+                        onClicked: dashboard.openPage(qsTr("To Do"),
+                                                      "qrc:/NightStand/Views/TodoPage.qml")
                     }
 
                     // Ambiance button (single column, full height)
@@ -222,7 +226,7 @@ Rectangle {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         title: "Ambiance"
-                        icon: "🎵"
+                        iconSource: UiStyle.monoIconPath("music")
                         onClicked: { /* TODO: ambiance scene */ }
                     }
                 }

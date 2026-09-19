@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "../Common"
 import "../../Style"
 
 GridView {
@@ -57,10 +58,10 @@ GridView {
         spacing: 10
         visible: alarmGrid.count === 0
 
-        Text {
+        ThemedIcon {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "⏰"
-            font.pixelSize: 56
+            source: UiStyle.monoIconPath("alarm-clock")
+            size: 56
             color: UiStyle.subtextColor
             opacity: 0.6
         }

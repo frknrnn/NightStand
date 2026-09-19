@@ -48,6 +48,12 @@ Item {
         return `qrc:/NightStand/Assets/icons/${baseImagePath}${(themeManager.isDarkTheme ? "-dark" : "-light")}.svg`
     }
 
+    // Tek renk ikon seti - ikon başına tek dosya, render anında ThemedIcon
+    // tarafından boyanıyor; bu yüzden bilerek -dark/-light son eki yok.
+    function monoIconPath(baseImagePath) {
+        return `qrc:/NightStand/Assets/icons/mono/${baseImagePath}.svg`
+    }
+
     function gifPath(baseImagePath) {
         return `qrc:/NightStand/Assets/gifs/${baseImagePath}${(themeManager.isDarkTheme ? "-dark" : "-light")}.gif`
     }

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import "../Common"
 import "../../Style"
 
 Item {
@@ -56,10 +57,13 @@ Item {
                 color: UiStyle.white
                 opacity: Math.min(1, -contentCard.x / 90)
 
-                Text {
+                // Beyaz daire içinde, kırmızı zemin üzerinde duruyor; ikisi de
+                // temadan bağımsız sabit, o yüzden bilerek textColor'a bağlanmıyor.
+                ThemedIcon {
                     anchors.centerIn: parent
-                    text: "🗑"
-                    font.pixelSize: 20
+                    source: UiStyle.monoIconPath("trash")
+                    size: 20
+                    color: UiStyle.black
                 }
             }
         }

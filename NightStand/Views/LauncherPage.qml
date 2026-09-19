@@ -20,8 +20,8 @@ Rectangle{
             anchors.top:parent.top
             anchors.left : parent.left
             anchors.right : parent.right
-            Dashboard{
-
+            Dashboard {
+                onOpenPage: (title, page) => launcherPageBase.launched(title, page, page)
             }
         }
         Rectangle{

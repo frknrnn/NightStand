@@ -1,12 +1,14 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
+import "../Common"
 import "../../Style"
 
 Rectangle {
     id: root
 
     property string title: ""
-    property string icon: ""
+    property url iconSource: ""
+    property int iconSize: 34
     property color accentColor: UiStyle.headerColor
 
     signal clicked()
@@ -27,9 +29,10 @@ Rectangle {
         anchors.centerIn: parent
         spacing: 10
 
-        Text {
-            text: root.icon
-            font.pixelSize: 32
+        ThemedIcon {
+            source: root.iconSource
+            size: root.iconSize
+            color: UiStyle.textColor
             Layout.alignment: Qt.AlignHCenter
         }
 

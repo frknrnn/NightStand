@@ -5,6 +5,7 @@
 #include "../Models/datetimemodel.h"
 #include "../Models/todomodel.h"
 #include "../Models/alarmmodel.h"
+#include "../Models/timermodel.h"
 
 class ModelManager : public QObject
 {
@@ -14,6 +15,7 @@ public:
     DateTimeModel* GetDateTimeModel();
     TodoModel* GetTodoModel();
     AlarmModel* GetAlarmModel();
+    TimerModel* GetTimerModel();
     void init();
 
 private:
@@ -25,6 +27,7 @@ private:
     DateTimeModel *m_dateTimeModel;
     TodoModel *m_todoModel;
     AlarmModel *m_alarmModel;
+    TimerModel *m_timerModel;
 
 signals:
 };

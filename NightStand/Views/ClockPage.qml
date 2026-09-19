@@ -13,6 +13,7 @@ Rectangle {
     enum PageType {
             Clock,
             Alarm,
+            Timer,
             Stopwatch
         }
 
@@ -37,6 +38,7 @@ Rectangle {
 
                 ClockView {}
                 AlarmView {}
+                TimerView {}
                 StopWatchView {}
             }
 

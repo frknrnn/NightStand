@@ -10,6 +10,8 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
+find_package(Qt6 REQUIRED COMPONENTS Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS QuickShapes)
 
 qt_standard_project_setup(REQUIRES 6.2)
 
@@ -88,6 +90,16 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/CountdownOverlay.qml
         QML_FILES Widgets/Clock/ReadingOverlay.qml
         QML_FILES Widgets/Clock/GalleryOverlay.qml
+        SOURCES Models/timermodel.h Models/timermodel.cpp
+        SOURCES ViewModels/timerviewmodel.h ViewModels/timerviewmodel.cpp
+        QML_FILES Widgets/Clock/TimerView.qml
+        QML_FILES Widgets/Clock/TimerRing.qml
+        QML_FILES Widgets/Clock/TimerDurationPicker.qml
+        QML_FILES Widgets/Clock/TimerPresets.qml
+        QML_FILES Widgets/Clock/TimerControls.qml
+        QML_FILES Widgets/Clock/TimerAlertOverlay.qml
+        QML_FILES Widgets/Clock/TimerAlertSound.qml
+        RESOURCES Assets/sounds/timer_alert.wav
 
 )
 
@@ -110,6 +122,8 @@ target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
+target_link_libraries(appNightStand PRIVATE Qt6::Multimedia)
+target_link_libraries(appNightStand PRIVATE Qt6::QuickShapes)
 
 include(GNUInstallDirs)
 install(TARGETS appNightStand

@@ -5,6 +5,7 @@
 #include "../ViewModels/datetimeviewmodel.h"
 #include "../ViewModels/todoviewmodel.h"
 #include "../ViewModels/alarmviewmodel.h"
+#include "../ViewModels/timerviewmodel.h"
 
 class AppController : public QObject
 {
@@ -19,6 +20,7 @@ public:
     DateTimeViewModel *getDateTimeViewModel() { return dateTimeViewModel; }
     TodoViewModel *getTodoViewModel() { return todoViewModel; }
     AlarmViewModel *getAlarmViewModel() { return alarmViewModel; }
+    TimerViewModel *getTimerViewModel() { return timerViewModel; }
 
     bool nightMode() const { return m_nightMode; }
     void setNightMode(bool enabled);
@@ -40,6 +42,7 @@ private:
     DateTimeViewModel *dateTimeViewModel;
     TodoViewModel *todoViewModel;
     AlarmViewModel *alarmViewModel;
+    TimerViewModel *timerViewModel;
     bool m_nightMode = false;
     bool m_flashMode = false;
     bool m_readingMode = false;

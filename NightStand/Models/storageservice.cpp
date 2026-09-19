@@ -43,6 +43,11 @@ QString StorageService::alarmFilePath() const
     return m_userDataPath + "/alarmlist.json";
 }
 
+QString StorageService::timerFilePath() const
+{
+    return m_userDataPath + "/timer.json";
+}
+
 void StorageService::initUserDataDirectory()
 {
     QDir dir(m_userDataPath);
@@ -137,4 +142,21 @@ bool StorageService::saveAlarms(const QJsonArray &alarms)
 {
     QJsonDocument doc(alarms);
     return saveJsonFile(alarmFilePath(), doc);
+}
+
+QJsonObject StorageService::loadTimer()
+{
+    QJsonDocument doc = loadJsonFile(timerFilePath());
+
+    if (doc.isNull() || !doc.isObject()) {
+        return QJsonObject();
+    }
+
+    return doc.object();
+}
+
+bool StorageService::saveTimer(const QJsonObject &timer)
+{
+    QJsonDocument doc(timer);
+    return saveJsonFile(timerFilePath(), doc);
 }

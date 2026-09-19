@@ -73,4 +73,11 @@ QQC2.ApplicationWindow {
         anchors.fill: parent
     }
 
+    // Timer alert - the countdown keeps running across pages, so the alert
+    // has to be able to fire from anywhere. Window level, above every overlay.
+    TimerAlertOverlay {
+        id: timerAlertOverlay
+        anchors.fill: parent
+    }
+
 }

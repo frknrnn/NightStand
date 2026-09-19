@@ -11,6 +11,7 @@ void ModelManager::init()
     m_dateTimeModel = new DateTimeModel();
     m_todoModel = new TodoModel();
     m_alarmModel = new AlarmModel();
+    m_timerModel = new TimerModel();
 }
 
 ModelManager* ModelManager::m_instance = nullptr;
@@ -36,6 +37,11 @@ TodoModel* ModelManager::GetTodoModel()
 AlarmModel* ModelManager::GetAlarmModel()
 {
     return m_alarmModel;
+}
+
+TimerModel* ModelManager::GetTimerModel()
+{
+    return m_timerModel;
 }
 
 ModelManager::~ModelManager()

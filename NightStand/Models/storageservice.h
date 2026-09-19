@@ -17,6 +17,7 @@ public:
     QString userDataPath() const;
     QString todoFilePath() const;
     QString alarmFilePath() const;
+    QString timerFilePath() const;
 
     // Generic JSON operations
     QJsonDocument loadJsonFile(const QString &filePath);
@@ -29,6 +30,10 @@ public:
     // Alarm specific operations
     QJsonArray loadAlarms();
     bool saveAlarms(const QJsonArray &alarms);
+
+    // Timer specific operations
+    QJsonObject loadTimer();
+    bool saveTimer(const QJsonObject &timer);
 
     // Initialize user data directory
     void initUserDataDirectory();

@@ -28,9 +28,15 @@ Rectangle {
         }
 
         NavigationIcon {
-            labelText: "Stopwatch"
+            labelText: "Timer"
             isActive: currentPage === 2
             onClicked: navigationBar.pageClicked(2)
+        }
+
+        NavigationIcon {
+            labelText: "Stopwatch"
+            isActive: currentPage === 3
+            onClicked: navigationBar.pageClicked(3)
         }
     }
 }

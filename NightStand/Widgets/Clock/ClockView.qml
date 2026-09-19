@@ -13,12 +13,24 @@ Item {
     readonly property int digitalStyle: UiSettings.digitalClockStyle
     readonly property bool analogActive: UiSettings.clockMode !== "digital"
 
+    // Aynı anda yalnızca bir stil seçici açık olabilir
+    property string openPicker: "none"   // "none" | "analog" | "digital"
+
     Timer {
         interval: 1000
         running: true
         repeat: true
         triggeredOnStart: true
         onTriggered: clockView.now = new Date()
+    }
+
+    // Dışarı dokununca açık expander kapanır. RowLayout'tan ÖNCE tanımlı, yani
+    // arkada: seçicilerin kendi MouseArea'ları olayı önce alır, merkezdeki saat
+    // alanında hiç MouseArea olmadığı için dokunuş buraya düşer.
+    MouseArea {
+        anchors.fill: parent
+        enabled: clockView.openPicker !== "none"
+        onClicked: clockView.openPicker = "none"
     }
 
     RowLayout {
@@ -34,10 +46,15 @@ Item {
             mode: "analog"
             selectedIndex: clockView.analogStyle
             isActiveMode: clockView.analogActive
+            expanded: clockView.openPicker === "analog"
+
+            onToggleRequested: clockView.openPicker =
+                (clockView.openPicker === "analog" ? "none" : "analog")
 
             onStyleSelected: function(index) {
                 UiSettings.analogClockStyle = index
                 UiSettings.clockMode = "analog"
+                clockView.openPicker = "none"
             }
         }
 
@@ -101,10 +118,15 @@ Item {
             mode: "digital"
             selectedIndex: clockView.digitalStyle
             isActiveMode: !clockView.analogActive
+            expanded: clockView.openPicker === "digital"
+
+            onToggleRequested: clockView.openPicker =
+                (clockView.openPicker === "digital" ? "none" : "digital")
 
             onStyleSelected: function(index) {
                 UiSettings.digitalClockStyle = index
                 UiSettings.clockMode = "digital"
+                clockView.openPicker = "none"
             }
         }
     }

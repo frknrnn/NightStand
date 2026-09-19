@@ -65,6 +65,7 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/BottomNavigationBar.qml
         QML_FILES Widgets/Clock/NavigationIcon.qml
         QML_FILES Widgets/Clock/ClockView.qml
+        QML_FILES Widgets/Clock/ClockStylePicker.qml
         SOURCES Models/todomodel.h Models/todomodel.cpp
         SOURCES Models/alarmmodel.h Models/alarmmodel.cpp
         SOURCES Models/storageservice.h Models/storageservice.cpp

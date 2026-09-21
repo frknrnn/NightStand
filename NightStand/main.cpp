@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include "Models/modelmanager.h"
 #include "Models/thememanager.h"
+#include "Models/wifimanager.h"
 #include "ViewModels/appcontroller.h"
 
 int main(int argc, char *argv[])
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
 
     ModelManager* mngr = ModelManager::instance();
     ThemeManager* themeManager = ThemeManager::instance();
+    WifiManager* wifiManager = WifiManager::instance();
     AppController appController;
     
     engine.rootContext()->setContextProperty("appController", &appController);
@@ -26,6 +28,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("alarmViewModel", appController.getAlarmViewModel());
     engine.rootContext()->setContextProperty("timerViewModel", appController.getTimerViewModel());
     engine.rootContext()->setContextProperty("themeManager", themeManager);
+    engine.rootContext()->setContextProperty("wifiManager", wifiManager);
 
     const QUrl url(u"qrc:/NightStand/Main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

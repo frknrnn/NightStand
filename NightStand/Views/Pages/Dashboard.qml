@@ -5,6 +5,7 @@ import "../../Widgets/Buttons"
 import "../../Widgets/Cards"
 import "../../Widgets/Clock"
 import "../../Widgets/Todo"
+import "../../Widgets/Wifi"
 import "../../Style"
 
 Rectangle {
@@ -38,6 +39,14 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 55
                     spacing: 20
+
+                    // Wi-Fi Button - bağlantı durumunu gösterir, dokununca
+                    // bağlanma penceresini açar. Desteklenmeyen platformda
+                    // (Windows) kendini gizler, RowLayout de yerini vermez.
+                    WifiStatusButton {
+                        id: wifiButton
+                        onClicked: wifiPopup.open()
+                    }
 
                     // Night Mode Button
                     RoundButton {
@@ -244,5 +253,12 @@ Rectangle {
             }
             dashboard.countdownTarget = ""
         }
+    }
+
+    // Wi-Fi bağlanma penceresi. parent: Overlay.overlay - sayfanın kırpmasından
+    // kaçıp tüm pencereyi kaplasın (AlarmView'daki AddAlarmPopup ile aynı).
+    WifiPopup {
+        id: wifiPopup
+        parent: Overlay.overlay
     }
 }

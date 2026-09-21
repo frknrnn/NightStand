@@ -12,6 +12,7 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 find_package(Qt6 REQUIRED COMPONENTS QuickShapes)
+find_package(Qt6 REQUIRED COMPONENTS VirtualKeyboard)
 
 qt_standard_project_setup(REQUIRES 6.2)
 
@@ -111,6 +112,12 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/TimerAlertOverlay.qml
         QML_FILES Widgets/Clock/TimerAlertSound.qml
         RESOURCES Assets/sounds/timer_alert.wav
+        SOURCES Models/wifinetworkmodel.h Models/wifinetworkmodel.cpp
+        SOURCES Models/wifimanager.h Models/wifimanager.cpp
+        QML_FILES Widgets/Wifi/SignalBars.qml
+        QML_FILES Widgets/Wifi/WifiStatusButton.qml
+        QML_FILES Widgets/Wifi/WifiNetworkRow.qml
+        QML_FILES Widgets/Wifi/WifiPopup.qml
 
 )
 
@@ -135,6 +142,7 @@ target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Multimedia)
 target_link_libraries(appNightStand PRIVATE Qt6::QuickShapes)
+target_link_libraries(appNightStand PRIVATE Qt6::VirtualKeyboard)
 
 include(GNUInstallDirs)
 install(TARGETS appNightStand

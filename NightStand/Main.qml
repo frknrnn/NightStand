@@ -80,4 +80,25 @@ QQC2.ApplicationWindow {
         anchors.fill: parent
     }
 
+    // Sanal klavye. QT_IM_MODULE main.cpp'de ayarlı ve VirtualKeyboard yukarıda
+    // import ediliyordu, ama ekrana bir InputPanel yerleştirilmediği sürece
+    // klavye hiç görünmüyor - dokunmatik ekranda hiçbir metin alanı yazılamıyordu.
+    //
+    // parent: Overlay.overlay olmak ZORUNDA: Popup'lar ayrı bir overlay
+    // katmanında çizilir, ApplicationWindow'un normal çocuğu olsaydı klavye
+    // Wi-Fi popup'ının altında kalırdı.
+    InputPanel {
+        id: inputPanel
+        parent: QQC2.Overlay.overlay
+        z: 99
+
+        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        y: active ? parent.height - height : parent.height
+        visible: active
+
+        Behavior on y {
+            NumberAnimation { duration: 220; easing.type: Easing.OutCubic }
+        }
+    }
 }

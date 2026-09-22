@@ -52,3 +52,7 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# Claude Code local worktrees - a nested checkout of this same repo,
+# registered via git worktree. Never belongs in the history.
+**/.claude/worktrees/

@@ -117,6 +117,16 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/TimerAlertOverlay.qml
         QML_FILES Widgets/Clock/TimerAlertSound.qml
         RESOURCES Assets/sounds/timer_alert.wav
+        SOURCES Models/calculatorhistorymodel.h Models/calculatorhistorymodel.cpp
+        SOURCES Models/calculatormodel.h Models/calculatormodel.cpp
+        SOURCES ViewModels/calculatorviewmodel.h ViewModels/calculatorviewmodel.cpp
+        QML_FILES Views/CalculatorPage.qml
+        QML_FILES Widgets/Calculator/CalcButton.qml
+        QML_FILES Widgets/Calculator/CalculatorDisplay.qml
+        QML_FILES Widgets/Calculator/CalculatorKeypad.qml
+        QML_FILES Widgets/Calculator/CalculatorScientificPad.qml
+        QML_FILES Widgets/Calculator/CalculatorHistoryPanel.qml
+        RESOURCES Assets/icons/calculator-dark.svg Assets/icons/calculator-light.svg Assets/icons/mono/calculator.svg
         SOURCES Models/wifinetworkmodel.h Models/wifinetworkmodel.cpp
         SOURCES Models/wifimanager.h Models/wifimanager.cpp
         QML_FILES Widgets/Wifi/SignalBars.qml

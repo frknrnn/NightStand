@@ -96,6 +96,13 @@ Rectangle{
         }
 
         ListElement {
+            title: qsTr("Calculator")
+            pageIcon: "calculator"
+            page: "CalculatorPage.qml"
+            fallback: ""
+        }
+
+        ListElement {
             title: qsTr("Settings")
             pageIcon: "settings"
             page: "Settings.qml"

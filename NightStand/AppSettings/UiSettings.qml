@@ -16,4 +16,8 @@ Settings {
 
     // Robot page character
     property string robotCharacter: "classic"   // "classic" | "eve"
+
+    // Calculator page
+    property bool calculatorScientific: false   // bilimsel panel açık mı
+    property bool calculatorRadians: false      // false = derece, true = radyan
 }

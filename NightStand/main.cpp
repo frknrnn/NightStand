@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("todoViewModel", appController.getTodoViewModel());
     engine.rootContext()->setContextProperty("alarmViewModel", appController.getAlarmViewModel());
     engine.rootContext()->setContextProperty("timerViewModel", appController.getTimerViewModel());
+    engine.rootContext()->setContextProperty("calculatorViewModel", appController.getCalculatorViewModel());
     engine.rootContext()->setContextProperty("themeManager", themeManager);
     engine.rootContext()->setContextProperty("wifiManager", wifiManager);
     engine.rootContext()->setContextProperty("languageManager", languageManager);

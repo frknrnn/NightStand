@@ -8,6 +8,7 @@ AppController::AppController(QObject *parent)
     todoViewModel = new TodoViewModel();
     alarmViewModel = new AlarmViewModel();
     timerViewModel = new TimerViewModel();
+    calculatorViewModel = new CalculatorViewModel();
 }
 
 void AppController::setNightMode(bool enabled)

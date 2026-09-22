@@ -15,6 +15,7 @@ class AppController : public QObject
     Q_PROPERTY(bool flashMode READ flashMode WRITE setFlashMode NOTIFY flashModeChanged)
     Q_PROPERTY(bool readingMode READ readingMode WRITE setReadingMode NOTIFY readingModeChanged)
     Q_PROPERTY(bool galleryMode READ galleryMode WRITE setGalleryMode NOTIFY galleryModeChanged)
+    Q_PROPERTY(bool ambianceMode READ ambianceMode WRITE setAmbianceMode NOTIFY ambianceModeChanged)
     Q_PROPERTY(bool breathingMode READ breathingMode WRITE setBreathingMode NOTIFY breathingModeChanged)
 
 public:
@@ -41,6 +42,10 @@ public:
     void setGalleryMode(bool enabled);
     Q_INVOKABLE void toggleGalleryMode();
 
+    bool ambianceMode() const { return m_ambianceMode; }
+    void setAmbianceMode(bool enabled);
+    Q_INVOKABLE void toggleAmbianceMode();
+
     bool breathingMode() const { return m_breathingMode; }
     void setBreathingMode(bool enabled);
     Q_INVOKABLE void toggleBreathingMode();
@@ -55,6 +60,7 @@ private:
     bool m_flashMode = false;
     bool m_readingMode = false;
     bool m_galleryMode = false;
+    bool m_ambianceMode = false;
     bool m_breathingMode = false;
 
 signals:
@@ -62,6 +68,7 @@ signals:
     void flashModeChanged();
     void readingModeChanged();
     void galleryModeChanged();
+    void ambianceModeChanged();
     void breathingModeChanged();
 };
 

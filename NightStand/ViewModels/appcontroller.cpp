@@ -63,6 +63,19 @@ void AppController::toggleGalleryMode()
     setGalleryMode(!m_galleryMode);
 }
 
+void AppController::setAmbianceMode(bool enabled)
+{
+    if (m_ambianceMode != enabled) {
+        m_ambianceMode = enabled;
+        emit ambianceModeChanged();
+    }
+}
+
+void AppController::toggleAmbianceMode()
+{
+    setAmbianceMode(!m_ambianceMode);
+}
+
 void AppController::setBreathingMode(bool enabled)
 {
     if (m_breathingMode != enabled) {

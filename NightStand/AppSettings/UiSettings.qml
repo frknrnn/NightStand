@@ -20,4 +20,8 @@ Settings {
     // Calculator page
     property bool calculatorScientific: false   // bilimsel panel açık mı
     property bool calculatorRadians: false      // false = derece, true = radyan
+
+    // Ambiance mode
+    property string ambianceGradient: "dusk"    // AmbianceGradients.js id
+    property real ambianceBrightness: 0.85
 }

@@ -74,6 +74,12 @@ QQC2.ApplicationWindow {
         anchors.fill: parent
     }
 
+    // Ambiance Overlay - static gradient scene with picker + brightness
+    AmbianceOverlay {
+        id: ambianceOverlay
+        anchors.fill: parent
+    }
+
     // Breathing Overlay - guided breathing session, opaque full-screen
     BreathingOverlay {
         id: breathingOverlay

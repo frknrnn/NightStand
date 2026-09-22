@@ -182,9 +182,12 @@ Rectangle {
                         Layout.column: 3
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        title: qsTr("Good Morning")
-                        iconSource: UiStyle.monoIconPath("sunrise")
-                        onClicked: { /* TODO: morning routine */ }
+                        title: qsTr("Ambiance")
+                        iconSource: UiStyle.monoIconPath("music")
+                        onClicked: {
+                            dashboard.countdownTarget = "ambiance"
+                            countdownOverlay.running = true
+                        }
                     }
 
                     ActionCard {
@@ -283,6 +286,8 @@ Rectangle {
                 appController.readingMode = true
             } else if (dashboard.countdownTarget === "gallery") {
                 appController.galleryMode = true
+            } else if (dashboard.countdownTarget === "ambiance") {
+                appController.ambianceMode = true
             } else if (dashboard.countdownTarget === "breathing") {
                 appController.breathingMode = true
             }

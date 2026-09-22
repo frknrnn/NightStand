@@ -96,6 +96,8 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Clock/CountdownOverlay.qml
         QML_FILES Widgets/Clock/ReadingOverlay.qml
         QML_FILES Widgets/Clock/GalleryOverlay.qml
+        QML_FILES Widgets/Clock/AmbianceOverlay.qml
+        QML_FILES Widgets/Clock/AmbianceGradients.js
         QML_FILES Views/RobotPage.qml
         QML_FILES Widgets/Robot/RobotFace.qml
         QML_FILES Widgets/Robot/ExpressionButton.qml

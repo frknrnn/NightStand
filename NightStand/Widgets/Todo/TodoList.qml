@@ -124,10 +124,10 @@ Item {
                 Text {
                     Layout.alignment: Qt.AlignHCenter
                     text: {
-                        if (todoList.totalCount === 0) return qsTr("Henüz görev yok")
-                        if (todoList.filterMode === 1) return qsTr("Tüm görevler tamamlandı")
-                        if (todoList.filterMode === 2) return qsTr("Tamamlanan görev yok")
-                        return qsTr("Henüz görev yok")
+                        if (todoList.totalCount === 0) return qsTr("No tasks yet")
+                        if (todoList.filterMode === 1) return qsTr("All tasks completed")
+                        if (todoList.filterMode === 2) return qsTr("No completed tasks")
+                        return qsTr("No tasks yet")
                     }
                     font.pixelSize: 20
                     font.bold: true
@@ -139,9 +139,9 @@ Item {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     text: {
-                        if (todoList.totalCount === 0) return qsTr("Yukarıdan yeni bir görev ekleyerek başla")
-                        if (todoList.filterMode === 1) return qsTr("Harika iş! Yeni bir görev eklemek ister misin?")
-                        if (todoList.filterMode === 2) return qsTr("Tamamlanan görevler burada görünecek")
+                        if (todoList.totalCount === 0) return qsTr("Start by adding a task above")
+                        if (todoList.filterMode === 1) return qsTr("Nice work! Want to add another task?")
+                        if (todoList.filterMode === 2) return qsTr("Completed tasks will show up here")
                         return ""
                     }
                     font.pixelSize: 14

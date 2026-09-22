@@ -13,7 +13,7 @@ ColumnLayout {
 
     Text {
         Layout.fillWidth: true
-        text: "Quick set"
+        text: qsTr("Quick set")
         font.pixelSize: 16
         font.bold: true
         color: UiStyle.subtextColor

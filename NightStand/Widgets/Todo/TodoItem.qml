@@ -43,7 +43,7 @@ Item {
             spacing: 10
 
             Text {
-                text: qsTr("Sil")
+                text: qsTr("Delete")
                 font.pixelSize: 18
                 font.bold: true
                 color: UiStyle.white
@@ -229,7 +229,7 @@ Item {
                     anchors.leftMargin: 14
                     anchors.rightMargin: 14
                     verticalAlignment: TextInput.AlignVCenter
-                    placeholderText: qsTr("Başlık")
+                    placeholderText: qsTr("Title")
                     placeholderTextColor: UiStyle.subtextColor
                     color: UiStyle.textColor
                     font.pixelSize: 16
@@ -259,7 +259,7 @@ Item {
                     anchors.leftMargin: 14
                     anchors.rightMargin: 14
                     verticalAlignment: TextInput.AlignVCenter
-                    placeholderText: qsTr("Açıklama")
+                    placeholderText: qsTr("Description")
                     placeholderTextColor: UiStyle.subtextColor
                     color: UiStyle.textColor
                     font.pixelSize: 14
@@ -291,7 +291,7 @@ Item {
 
                     Text {
                         anchors.centerIn: parent
-                        text: qsTr("Vazgeç")
+                        text: qsTr("Cancel")
                         font.pixelSize: 14
                         color: UiStyle.subtextColor
                     }
@@ -319,7 +319,7 @@ Item {
 
                     Text {
                         anchors.centerIn: parent
-                        text: qsTr("Kaydet")
+                        text: qsTr("Save")
                         font.pixelSize: 14
                         font.bold: true
                         color: UiStyle.white

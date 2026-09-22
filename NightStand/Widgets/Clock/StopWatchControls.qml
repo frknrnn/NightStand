@@ -18,7 +18,7 @@ RowLayout {
     StopWatchButton {
         Layout.preferredWidth: 96
         Layout.preferredHeight: 96
-        text: "Reset"
+        text: qsTr("Reset")
         isPrimary: false
         enabled: running || hasTime
 
@@ -28,7 +28,7 @@ RowLayout {
     StopWatchButton {
         Layout.preferredWidth: 132
         Layout.preferredHeight: 132
-        text: running ? "Stop" : "Start"
+        text: running ? qsTr("Stop") : qsTr("Start")
         isPrimary: true
         accentColor: running ? UiStyle.red : UiStyle.buttonProgress
 
@@ -38,7 +38,7 @@ RowLayout {
     StopWatchButton {
         Layout.preferredWidth: 96
         Layout.preferredHeight: 96
-        text: "Lap"
+        text: qsTr("Lap")
         isPrimary: false
         enabled: running
 

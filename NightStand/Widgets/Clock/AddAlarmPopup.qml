@@ -65,7 +65,7 @@ Popup {
 
         Text {
             Layout.alignment: Qt.AlignHCenter
-            text: isEditing ? "Edit Alarm" : "New Alarm"
+            text: isEditing ? qsTr("Edit Alarm") : qsTr("New Alarm")
             font.pixelSize: 24
             font.bold: true
             color: UiStyle.textColor
@@ -172,7 +172,7 @@ Popup {
                         anchors.fill: parent
                         anchors.leftMargin: 14
                         anchors.rightMargin: 14
-                        placeholderText: "Label (optional)"
+                        placeholderText: qsTr("Label (optional)")
                         placeholderTextColor: UiStyle.subtextColor
                         color: UiStyle.textColor
                         font.pixelSize: 16
@@ -209,7 +209,7 @@ Popup {
 
                 Text {
                     anchors.centerIn: parent
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     font.pixelSize: 18
                     font.bold: true
                     color: UiStyle.textColor
@@ -233,7 +233,7 @@ Popup {
 
                 Text {
                     anchors.centerIn: parent
-                    text: isEditing ? "Update" : "Save"
+                    text: isEditing ? qsTr("Update") : qsTr("Save")
                     font.pixelSize: 18
                     font.bold: true
                     color: UiStyle.onHeaderColor

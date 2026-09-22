@@ -93,12 +93,12 @@ Item {
 
     function getThemeDisplayName(themeName) {
         switch(themeName) {
-            case "black": return "Black Theme"
-            case "dark": return "Dark Theme"
-            case "light": return "Light Theme"
-            case "blue": return "Blue Theme"
-            case "purple": return "Purple Theme"
-            case "forest": return "Forest Theme"
+            case "black": return qsTr("Black Theme")
+            case "dark": return qsTr("Dark Theme")
+            case "light": return qsTr("Light Theme")
+            case "blue": return qsTr("Blue Theme")
+            case "purple": return qsTr("Purple Theme")
+            case "forest": return qsTr("Forest Theme")
             default: return themeName.charAt(0).toUpperCase() + themeName.slice(1)
         }
     }

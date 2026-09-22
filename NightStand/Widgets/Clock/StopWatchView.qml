@@ -52,7 +52,7 @@ Item {
 
         Text {
             Layout.alignment: Qt.AlignHCenter
-            text: "Stopwatch"
+            text: qsTr("Stopwatch")
             font.pixelSize: 22
             font.bold: true
             color: UiStyle.subtextColor
@@ -158,7 +158,8 @@ Item {
                             spacing: 2
 
                             Text {
-                                text: "Lap " + model.lapNumber
+                                //: %1 tur numarası
+                                text: qsTr("Lap %1").arg(model.lapNumber)
                                 font.pixelSize: 16
                                 font.bold: true
                                 color: UiStyle.textColor
@@ -166,7 +167,7 @@ Item {
 
                             Text {
                                 visible: lapCard.isFastest || lapCard.isSlowest
-                                text: lapCard.isFastest ? "Fastest" : "Slowest"
+                                text: lapCard.isFastest ? qsTr("Fastest") : qsTr("Slowest")
                                 font.pixelSize: 11
                                 font.bold: true
                                 color: lapCard.accent

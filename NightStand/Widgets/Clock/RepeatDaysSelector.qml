@@ -34,7 +34,7 @@ Item {
         spacing: 10
 
         Text {
-            text: "Repeat"
+            text: qsTr("Repeat")
             font.pixelSize: 14
             color: UiStyle.subtextColor
         }
@@ -45,14 +45,18 @@ Item {
             spacing: 6
 
             Repeater {
+                // Tek harflik gün kısaltmaları. qsTr'nin ikinci parametresi
+                // (disambiguation) şart: "T" hem Tuesday hem Thursday, "S" hem
+                // Saturday hem Sunday için geçiyor. Onsuz ikisi tek .ts girdisinde
+                // birleşir ve çevirmen Salı'ya S, Perşembe'ye P veremez.
                 model: [
-                    { label: "M", day: 1 },
-                    { label: "T", day: 2 },
-                    { label: "W", day: 3 },
-                    { label: "T", day: 4 },
-                    { label: "F", day: 5 },
-                    { label: "S", day: 6 },
-                    { label: "S", day: 0 }
+                    { label: qsTr("M", "Monday"),    day: 1 },
+                    { label: qsTr("T", "Tuesday"),   day: 2 },
+                    { label: qsTr("W", "Wednesday"), day: 3 },
+                    { label: qsTr("T", "Thursday"),  day: 4 },
+                    { label: qsTr("F", "Friday"),    day: 5 },
+                    { label: qsTr("S", "Saturday"),  day: 6 },
+                    { label: qsTr("S", "Sunday"),    day: 0 }
                 ]
 
                 delegate: Rectangle {
@@ -90,9 +94,9 @@ Item {
 
             Repeater {
                 model: [
-                    { label: "Weekdays", days: [1, 2, 3, 4, 5] },
-                    { label: "Weekend",  days: [0, 6] },
-                    { label: "Every day", days: [0, 1, 2, 3, 4, 5, 6] }
+                    { label: qsTr("Weekdays"), days: [1, 2, 3, 4, 5] },
+                    { label: qsTr("Weekend"),  days: [0, 6] },
+                    { label: qsTr("Every day"), days: [0, 1, 2, 3, 4, 5, 6] }
                 ]
 
                 delegate: Rectangle {

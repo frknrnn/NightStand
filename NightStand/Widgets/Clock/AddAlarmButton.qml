@@ -34,7 +34,7 @@ Rectangle {
 
         Text {
             anchors.verticalCenter: parent.verticalCenter
-            text: "Add Alarm"
+            text: qsTr("Add Alarm")
             font.pixelSize: 16
             font.bold: true
             color: UiStyle.onHeaderColor

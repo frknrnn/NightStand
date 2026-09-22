@@ -59,23 +59,23 @@ QString WifiManager::statusText() const
 {
     switch (m_state) {
     case Unsupported:
-        return m_unsupportedReason.isEmpty() ? tr("Wi-Fi kullanılamıyor")
+        return m_unsupportedReason.isEmpty() ? tr("Wi-Fi unavailable")
                                              : m_unsupportedReason;
     case RadioOff:
-        return m_hardwareBlocked ? tr("Wi-Fi donanım anahtarıyla kapatılmış")
-                                 : tr("Wi-Fi kapalı");
+        return m_hardwareBlocked ? tr("Wi-Fi is blocked by a hardware switch")
+                                 : tr("Wi-Fi is off");
     case Disconnected:
-        return tr("Bağlı değil");
+        return tr("Not connected");
     case Connecting:
-        return m_currentSsid.isEmpty() ? tr("Bağlanıyor…")
-                                       : tr("%1 ağına bağlanıyor…").arg(m_currentSsid);
+        return m_currentSsid.isEmpty() ? tr("Connecting…")
+                                       : tr("Connecting to %1…").arg(m_currentSsid);
     case Connected:
         if (m_connectivity == QLatin1String("portal"))
-            return tr("%1 · oturum açma gerekiyor").arg(m_currentSsid);
+            return tr("%1 · sign-in required").arg(m_currentSsid);
         if (m_connectivity == QLatin1String("limited") || m_connectivity == QLatin1String("none"))
-            return tr("%1 · internet yok").arg(m_currentSsid);
+            return tr("%1 · no internet").arg(m_currentSsid);
         if (m_currentSignal >= 0)
-            return tr("%1 · sinyal %2").arg(m_currentSsid,
+            return tr("%1 · signal %2").arg(m_currentSsid,
                                             QString::number(m_currentSignal) + QLatin1Char('%'));
         return m_currentSsid;
     }
@@ -95,7 +95,7 @@ void WifiManager::probeSupport()
 #endif
 
     if (m_nmcliPath.isEmpty()) {
-        m_unsupportedReason = tr("Bu sistemde Wi-Fi yönetimi kullanılamıyor.");
+        m_unsupportedReason = tr("Wi-Fi control is not available on this system.");
         setSupported(false);
         setState(Unsupported);
         m_poll.stop();
@@ -139,10 +139,10 @@ QProcess* WifiManager::startNmcli(Job job, const QStringList &args, int timeoutM
     connect(p, &QProcess::errorOccurred, this, [this, job, p, logArgs](QProcess::ProcessError e) {
         if (e != QProcess::FailedToStart)
             return;                         // everything else arrives via finished()
-        qWarning() << "WifiManager: nmcli başlatılamadı:" << logArgs;
+        qWarning() << "WifiManager: failed to start nmcli:" << logArgs;
         m_running.remove(job);
         if (++m_spawnFailures >= kMaxSpawnFailures) {
-            m_unsupportedReason = tr("nmcli çalıştırılamıyor.");
+            m_unsupportedReason = tr("Cannot run nmcli.");
             setSupported(false);
             setState(Unsupported);
             m_poll.stop();
@@ -282,7 +282,7 @@ void WifiManager::onJobFinished(Job job, int exitCode, bool timedOut,
             kickPoll();
         } else {
             const bool auth = looksLikeAuthFailure(exitCode, err);
-            const QString msg = auth ? tr("Yanlış şifre.")
+            const QString msg = auth ? tr("Wrong password.")
                                      : humanError(job, exitCode, err, timedOut);
 
             // Some nmcli versions leave the half-created profile behind carrying
@@ -459,7 +459,7 @@ bool WifiManager::guardCommand()
 {
     if (!m_supported) {
         setLastError(m_unsupportedReason.isEmpty()
-                     ? tr("Bu sistemde Wi-Fi yönetimi kullanılamıyor.")
+                     ? tr("Wi-Fi control is not available on this system.")
                      : m_unsupportedReason);
         return false;
     }
@@ -519,7 +519,7 @@ void WifiManager::parseGeneral(const QString &out)
         // say so explicitly instead of letting the toggle look broken. Handled on
         // the transition only, so the message also clears when the switch is
         // flipped back - and so a poll does not keep re-asserting it.
-        setLastError(m_hardwareBlocked ? tr("Wi-Fi donanım anahtarıyla kapatılmış.")
+        setLastError(m_hardwareBlocked ? tr("Wi-Fi is blocked by a hardware switch.")
                                        : QString());
     }
 }
@@ -562,7 +562,7 @@ void WifiManager::parseDeviceStatus(const QString &out)
 
     if (!found) {
         m_device.clear();
-        m_unsupportedReason = tr("Bu cihazda Wi-Fi donanımı bulunamadı.");
+        m_unsupportedReason = tr("No Wi-Fi hardware found on this device.");
         return;
     }
 
@@ -570,7 +570,7 @@ void WifiManager::parseDeviceStatus(const QString &out)
         // The Bullseye case: dhcpcd/wpa_supplicant own wlan0, NetworkManager does
         // not. Nothing we do here can work, so report it as unsupported.
         m_device.clear();
-        m_unsupportedReason = tr("Wi-Fi cihazı NetworkManager tarafından yönetilmiyor.");
+        m_unsupportedReason = tr("The Wi-Fi device is not managed by NetworkManager.");
         return;
     }
 
@@ -696,27 +696,27 @@ QString WifiManager::humanError(Job job, int exitCode, const QString &err, bool 
     Q_UNUSED(job)
 
     if (timedOut)
-        return tr("İşlem zaman aşımına uğradı.");
+        return tr("The operation timed out.");
 
     // Reads keep working without polkit authorization while writes all fail, so
     // "the list fills but Connect does nothing" is the fingerprint of this case.
     if (looksLikeNotAuthorized(err))
-        return tr("Ağ ayarlarını değiştirme yetkisi yok (polkit).");
+        return tr("Not authorized to change network settings (polkit).");
 
     switch (exitCode) {
-    case 2:  return tr("Geçersiz giriş.");
-    case 3:  return tr("NetworkManager zaman aşımına uğradı.");
-    case 4:  return tr("Bağlantı kurulamadı.");
-    case 5:  return tr("Bağlantı kesilemedi.");
-    case 6:  return tr("Cihaz bağlantısı kesilemedi.");
-    case 7:  return tr("Profil silinemedi.");
-    case 8:  return tr("NetworkManager çalışmıyor.");
-    case 10: return tr("Ağ bulunamadı.");
+    case 2:  return tr("Invalid input.");
+    case 3:  return tr("NetworkManager timed out.");
+    case 4:  return tr("Could not connect.");
+    case 5:  return tr("Could not disconnect.");
+    case 6:  return tr("Could not disconnect the device.");
+    case 7:  return tr("Could not delete the profile.");
+    case 8:  return tr("NetworkManager is not running.");
+    case 10: return tr("Network not found.");
     default: break;
     }
 
     const QString firstLine = err.section(QLatin1Char('\n'), 0, 0).trimmed();
-    return firstLine.isEmpty() ? tr("Bilinmeyen bir hata oluştu.") : firstLine;
+    return firstLine.isEmpty() ? tr("An unknown error occurred.") : firstLine;
 }
 
 QStringList WifiManager::redactArgs(const QStringList &args)
@@ -735,7 +735,7 @@ void WifiManager::setRadioEnabled(bool on)
     if (!guardCommand())
         return;
     if (m_hardwareBlocked && on) {
-        setLastError(tr("Wi-Fi donanım anahtarıyla kapatılmış."));
+        setLastError(tr("Wi-Fi is blocked by a hardware switch."));
         return;
     }
 
@@ -757,7 +757,7 @@ void WifiManager::scan()
 {
     if (!m_supported) {
         setLastError(m_unsupportedReason.isEmpty()
-                     ? tr("Bu sistemde Wi-Fi yönetimi kullanılamıyor.")
+                     ? tr("Wi-Fi control is not available on this system.")
                      : m_unsupportedReason);
         return;
     }
@@ -792,7 +792,7 @@ void WifiManager::connectToNetwork(const QString &ssid, const QString &password)
 
     const int row = m_networks->indexOfSsid(ssid);
     if (row >= 0 && m_networks->networkAt(row).security.contains(QLatin1String("802.1X"))) {
-        setLastError(tr("Kurumsal (802.1X) ağlar desteklenmiyor."));
+        setLastError(tr("Enterprise (802.1X) networks are not supported."));
         return;
     }
 
@@ -859,7 +859,7 @@ void WifiManager::disconnectCurrent()
     if (!guardCommand())
         return;
     if (m_device.isEmpty()) {
-        setLastError(tr("Wi-Fi cihazı bulunamadı."));
+        setLastError(tr("No Wi-Fi device found."));
         return;
     }
 
@@ -882,7 +882,7 @@ void WifiManager::forgetNetwork(const QString &ssid)
 
     const QString uuid = m_savedUuidBySsid.value(ssid);
     if (uuid.isEmpty()) {
-        setLastError(tr("Bu ağ için kayıtlı profil yok."));
+        setLastError(tr("No saved profile for this network."));
         return;
     }
 

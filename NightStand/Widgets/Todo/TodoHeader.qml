@@ -33,7 +33,7 @@ Rectangle {
                 spacing: 2
 
                 Text {
-                    text: qsTr("Görevler")
+                    text: qsTr("Tasks")
                     font.pixelSize: 26
                     font.bold: true
                     color: UiStyle.textColor
@@ -44,7 +44,7 @@ Rectangle {
 
                     AnimatedCounter {
                         value: todoHeader.totalCount
-                        label: qsTr("toplam")
+                        label: qsTr("total")
                         valueColor: UiStyle.textColor
                     }
 
@@ -56,7 +56,7 @@ Rectangle {
 
                     AnimatedCounter {
                         value: todoHeader.completedCount
-                        label: qsTr("tamamlandı")
+                        label: qsTr("completed")
                         valueColor: UiStyle.buttonProgress
                     }
 
@@ -68,7 +68,7 @@ Rectangle {
 
                     AnimatedCounter {
                         value: todoHeader.pendingCount
-                        label: qsTr("bekleyen")
+                        label: qsTr("pending")
                         valueColor: UiStyle.menuTextColor
                     }
                 }
@@ -84,7 +84,9 @@ Rectangle {
                 Text {
                     id: percentText
                     anchors.centerIn: parent
-                    text: todoHeader.progressPercent + "%"
+                    //: Tamamlanma yüzdesi, örn. "42%". Sondaki % kasıtlı: arg()
+                    //: yalnızca %1'i tüketir.
+                    text: qsTr("%1%").arg(todoHeader.progressPercent)
                     font.pixelSize: 22
                     font.bold: true
                     color: todoHeader.progress >= 1.0

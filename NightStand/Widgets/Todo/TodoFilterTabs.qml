@@ -18,7 +18,7 @@ Rectangle {
     radius: 14
     color: UiStyle.cardPanelColor
 
-    readonly property var labels: [qsTr("Tümü"), qsTr("Aktif"), qsTr("Tamamlanan")]
+    readonly property var labels: [qsTr("All"), qsTr("Active"), qsTr("Completed")]
     readonly property var counts: [totalCount, activeCount, completedCount]
 
     Item {

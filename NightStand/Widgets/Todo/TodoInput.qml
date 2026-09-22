@@ -58,7 +58,7 @@ Rectangle {
                     anchors.leftMargin: 16
                     anchors.rightMargin: 16
                     verticalAlignment: TextInput.AlignVCenter
-                    placeholderText: qsTr("Yeni görev ekle...")
+                    placeholderText: qsTr("Add a new task...")
                     placeholderTextColor: UiStyle.subtextColor
                     color: UiStyle.textColor
                     font.pixelSize: 16
@@ -163,7 +163,7 @@ Rectangle {
                         anchors.leftMargin: 16
                         anchors.rightMargin: 16
                         verticalAlignment: TextInput.AlignVCenter
-                        placeholderText: qsTr("Açıklama (opsiyonel)...")
+                        placeholderText: qsTr("Description (optional)...")
                         placeholderTextColor: UiStyle.subtextColor
                         color: UiStyle.textColor
                         font.pixelSize: 14

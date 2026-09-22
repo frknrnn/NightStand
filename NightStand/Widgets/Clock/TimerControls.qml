@@ -27,9 +27,9 @@ ColumnLayout {
         isPrimary: true
         enabled: !controls.idle || controls.canStart
 
-        text: controls.running ? "Pause"
-                               : controls.paused ? "Resume"
-                                                 : controls.finished ? "Dismiss" : "Start"
+        text: controls.running ? qsTr("Pause")
+                               : controls.paused ? qsTr("Resume")
+                                                 : controls.finished ? qsTr("Dismiss") : qsTr("Start")
 
         accentColor: controls.running ? UiStyle.headerColor
                                       : controls.finished ? UiStyle.headerColor
@@ -54,7 +54,7 @@ ColumnLayout {
         Layout.preferredWidth: 104
         Layout.preferredHeight: 104
         isPrimary: false
-        text: controls.idle ? "Reset" : "Cancel"
+        text: controls.idle ? qsTr("Reset") : qsTr("Cancel")
         accentColor: controls.idle ? UiStyle.headerColor : UiStyle.red
         enabled: !controls.idle || controls.canStart
 

@@ -12,7 +12,7 @@ QQC2.ApplicationWindow {
     width: 1024
     height: 600
     visible: true
-    title: qsTr("NightStand PFT")
+    title: "NightStand PFT"
     flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
     visibility: Qt.WindowMaximized
 

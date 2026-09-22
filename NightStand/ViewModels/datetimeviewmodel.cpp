@@ -19,14 +19,16 @@ QString DateTimeViewModel::currentTime() const
 
 QString DateTimeViewModel::currentDate() const
 {
-    QLocale locale(QLocale::Turkish);
-    return locale.toString(m_model->currentDateTime().date(), "dd MMMM yyyy");
+    // The default locale is owned by LanguageManager, which calls
+    // QLocale::setDefault() on every switch. This used to hard-code
+    // QLocale::Turkish, so the dashboard date stayed Turkish whatever
+    // language was selected.
+    return QLocale().toString(m_model->currentDateTime().date(), "dd MMMM yyyy");
 }
 
 QString DateTimeViewModel::dayOfWeek() const
 {
-    QLocale locale(QLocale::Turkish);
-    return locale.toString(m_model->currentDateTime().date(), "dddd");
+    return QLocale().toString(m_model->currentDateTime().date(), "dddd");
 }
 
 void DateTimeViewModel::updateDateTime()

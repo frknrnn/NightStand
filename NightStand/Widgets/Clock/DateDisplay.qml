@@ -10,11 +10,14 @@ Item {
     property real baseFontSize: 18
     property bool compact: false
 
-    readonly property var trLocale: Qt.locale("tr_TR")
+    // Seçili dili izler. Argümansız Qt.locale() varsayılan locale'i döndürür ama
+    // BAĞIMLILIK YARATMAZ, yani binding dil değişiminde hiç yeniden değerlendirilmez.
+    // localeName tam da bunun için LanguageManager üzerinde bir property.
+    readonly property var locale: Qt.locale(languageManager.localeName)
     readonly property string monoFont: "Consolas, Menlo, Monaco, monospace"
 
     function formatted(pattern) {
-        return now.toLocaleDateString(trLocale, pattern)
+        return now.toLocaleDateString(locale, pattern)
     }
 
     implicitWidth: loader.implicitWidth

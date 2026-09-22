@@ -25,7 +25,7 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignRight
-                    text: "Alarms"
+                    text: qsTr("Alarms")
                     font.pixelSize: 26
                     font.bold: true
                     color: UiStyle.textColor
@@ -33,7 +33,8 @@ Item {
 
                 Text {
                     Layout.alignment: Qt.AlignRight
-                    text: alarmViewModel.enabledCount + " of " + alarmViewModel.totalCount + " active"
+                    text: qsTr("%1 of %2 active").arg(alarmViewModel.enabledCount)
+                                                 .arg(alarmViewModel.totalCount)
                     font.pixelSize: 13
                     color: UiStyle.subtextColor
                 }

@@ -15,8 +15,8 @@ Item {
     signal characterSelected(string id)
 
     readonly property var characters: [
-        { id: "classic", label: qsTr("Klasik Robot") },
-        { id: "eve", label: qsTr("EVE") }
+        { id: "classic", label: qsTr("Classic Robot") },
+        { id: "eve", label: "EVE" }
     ]
 
     readonly property real cardHeight: 132
@@ -89,7 +89,7 @@ Item {
                         }
 
                         Text {
-                            text: card.selected ? qsTr("Seçili") : qsTr("Seçmek için dokun")
+                            text: card.selected ? qsTr("Selected") : qsTr("Tap to select")
                             font.pixelSize: 11
                             color: UiStyle.subtextColor
                         }

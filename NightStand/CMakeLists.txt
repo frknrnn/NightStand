@@ -13,8 +13,13 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 find_package(Qt6 REQUIRED COMPONENTS QuickShapes)
 find_package(Qt6 REQUIRED COMPONENTS VirtualKeyboard)
+find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
-qt_standard_project_setup(REQUIRES 6.2)
+qt_standard_project_setup(
+    REQUIRES 6.2
+    I18N_SOURCE_LANGUAGE en
+    I18N_TRANSLATED_LANGUAGES tr
+)
 
 qt_add_executable(appNightStand
     main.cpp
@@ -118,7 +123,32 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Wifi/WifiStatusButton.qml
         QML_FILES Widgets/Wifi/WifiNetworkRow.qml
         QML_FILES Widgets/Wifi/WifiPopup.qml
+        SOURCES Models/languagemanager.h Models/languagemanager.cpp
+        RESOURCES Strings/qmldir
+        QML_FILES Strings/BreathingStrings.qml
+        QML_FILES Strings/RobotStrings.qml
+        QML_FILES Widgets/Settings/LanguageSelector.qml
 
+)
+
+# Translations. lupdate scans the target's SOURCES, which is where
+# qt_add_qml_module put every QML_FILES entry (the .js files included), so the
+# whole module is covered without listing anything twice.
+#
+# No TS_FILES: I18N_TRANSLATED_LANGUAGES above makes Qt derive
+#   i18n/NightStand_tr.ts  - the Turkish catalogue
+#   i18n/NightStand_en.ts  - plural forms only
+# and embed the compiled .qm under qrc :/i18n/ .
+#
+# This must sit after qt_add_qml_module: without SOURCE_TARGETS the call defers
+# itself to the end of the project scope and auto-collects every target in the
+# directory tree. Being explicit is worth the placement constraint.
+qt_add_translations(
+    TARGETS appNightStand
+    SOURCE_TARGETS appNightStand
+    TS_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/i18n
+    RESOURCE_PREFIX "/i18n"
+    IMMEDIATE_CALL
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

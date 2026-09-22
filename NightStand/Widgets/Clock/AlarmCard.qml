@@ -9,7 +9,7 @@ Item {
 
     property int alarmId: -1
     property string alarmTime: "00:00"
-    property string alarmLabel: "Alarm"
+    property string alarmLabel: qsTr("Alarm")
     property bool alarmEnabled: false
     property var alarmRepeatDays: []
 
@@ -21,17 +21,18 @@ Item {
 
     function repeatLabel() {
         if (!alarmRepeatDays || alarmRepeatDays.length === 0)
-            return "One-time"
+            return qsTr("One-time")
         if (alarmRepeatDays.length === 7)
-            return "Every day"
+            return qsTr("Every day")
         var sorted = alarmRepeatDays.slice().sort(function (a, b) { return a - b })
         var weekdays = [1, 2, 3, 4, 5]
         var weekend = [0, 6]
         if (sorted.length === 5 && sorted.every(function (d, i) { return d === weekdays[i] }))
-            return "Weekdays"
+            return qsTr("Weekdays")
         if (sorted.length === 2 && sorted[0] === 0 && sorted[1] === 6)
-            return "Weekends"
-        var names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+            return qsTr("Weekends")
+        var names = [qsTr("Sun"), qsTr("Mon"), qsTr("Tue"), qsTr("Wed"),
+                     qsTr("Thu"), qsTr("Fri"), qsTr("Sat")]
         var parts = []
         for (var i = 0; i < sorted.length; ++i)
             parts.push(names[sorted[i]])
@@ -65,7 +66,7 @@ Item {
 
             Text {
                 Layout.fillWidth: true
-                text: "Delete this alarm?"
+                text: qsTr("Delete this alarm?")
                 font.pixelSize: 18
                 font.bold: true
                 color: UiStyle.white
@@ -81,7 +82,7 @@ Item {
 
                 Text {
                     anchors.centerIn: parent
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     color: UiStyle.white
                     font.pixelSize: 14
                     font.bold: true
@@ -101,7 +102,7 @@ Item {
 
                 Text {
                     anchors.centerIn: parent
-                    text: "Delete"
+                    text: qsTr("Delete")
                     color: UiStyle.red
                     font.pixelSize: 14
                     font.bold: true

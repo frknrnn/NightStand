@@ -44,7 +44,7 @@ Item {
                 Text {
                     Layout.preferredWidth: 120
                     horizontalAlignment: Text.AlignHCenter
-                    text: "Hours"
+                    text: qsTr("Hours")
                     font.pixelSize: 13
                     color: UiStyle.subtextColor
                 }
@@ -54,7 +54,7 @@ Item {
                 Text {
                     Layout.preferredWidth: 120
                     horizontalAlignment: Text.AlignHCenter
-                    text: "Minutes"
+                    text: qsTr("Minutes")
                     font.pixelSize: 13
                     color: UiStyle.subtextColor
                 }
@@ -64,7 +64,7 @@ Item {
                 Text {
                     Layout.preferredWidth: 120
                     horizontalAlignment: Text.AlignHCenter
-                    text: "Seconds"
+                    text: qsTr("Seconds")
                     font.pixelSize: 13
                     color: UiStyle.subtextColor
                 }

@@ -122,7 +122,10 @@ int AlarmModel::addAlarm(int hour, int minute, const QString &label, const QVari
     AlarmItem item;
     item.id = m_nextId++;
     item.time = QTime(hour, minute);
-    item.label = label.isEmpty() ? "Alarm" : label.trimmed();
+    // Stored data, not UI text: a tr("Alarm") here would freeze the
+    // creation-time language into the saved alarm forever. Empty means
+    // "unnamed"; AlarmCard supplies the translated fallback at display time.
+    item.label = label.trimmed();
     item.enabled = true;
     for (const QVariant &day : repeatDays) {
         item.repeatDays.append(day.toInt());

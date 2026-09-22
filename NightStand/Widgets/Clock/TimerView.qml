@@ -35,7 +35,7 @@ Item {
             Layout.fillWidth: true
             Layout.preferredHeight: 30
             horizontalAlignment: Text.AlignHCenter
-            text: "Timer"
+            text: qsTr("Timer")
             font.pixelSize: 22
             font.bold: true
             color: UiStyle.subtextColor
@@ -85,7 +85,7 @@ Item {
                     }
 
                     Text {
-                        text: "Total"
+                        text: qsTr("Total")
                         font.pixelSize: 13
                         color: UiStyle.subtextColor
                     }
@@ -101,7 +101,7 @@ Item {
                     Item { Layout.preferredHeight: 20 }
 
                     Text {
-                        text: "Ends at"
+                        text: qsTr("Ends at")
                         font.pixelSize: 13
                         color: UiStyle.subtextColor
                         visible: timerViewModel.running
@@ -136,8 +136,8 @@ Item {
                         Text {
                             id: stateLabel
                             anchors.centerIn: parent
-                            text: timerViewModel.finished ? "Time's up"
-                                                          : timerViewModel.paused ? "Paused" : "Running"
+                            text: timerViewModel.finished ? qsTr("Time's up")
+                                                          : timerViewModel.paused ? qsTr("Paused") : qsTr("Running")
                             font.pixelSize: 13
                             font.bold: true
                             color: parent.border.color
@@ -191,10 +191,10 @@ Item {
                     // Progress is 0 when finished, so the track carries the alarm colour
                     trackColor: timerViewModel.finished ? UiStyle.red : UiStyle.roundButtonColor
 
-                    captionText: timerViewModel.finished ? "Time's up"
-                                                         : timerViewModel.paused ? "Paused"
+                    captionText: timerViewModel.finished ? qsTr("Time's up")
+                                                         : timerViewModel.paused ? qsTr("Paused")
                                                                                  : timerViewModel.endsAtText.length > 0
-                                                                                   ? "Ends " + timerViewModel.endsAtText
+                                                                                   ? qsTr("Ends %1").arg(timerViewModel.endsAtText)
                                                                                    : ""
 
                     Behavior on opacity {

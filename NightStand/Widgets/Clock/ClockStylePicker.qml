@@ -23,8 +23,8 @@ Item {
 
     readonly property bool analogMode: mode === "analog"
     readonly property var labels: analogMode
-                                  ? [qsTr("Klasik"), qsTr("Sade"), qsTr("Rakam"), qsTr("Neon"), qsTr("Nokta")]
-                                  : [qsTr("Klasik"), qsTr("Sade"), qsTr("Mono"), qsTr("LCD"), qsTr("12s")]
+                                  ? [qsTr("Classic"), qsTr("Plain"), qsTr("Digits"), qsTr("Neon"), qsTr("Dots")]
+                                  : [qsTr("Classic"), qsTr("Plain"), qsTr("Mono"), qsTr("LCD"), qsTr("12h")]
 
     // Önizlemeler sabit bir saatte durur; saniyede bir yeniden çizim olmaz
     readonly property date previewTime: new Date(2000, 0, 1, 10, 10, 30)

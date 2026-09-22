@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import "../Style"
 import "../Widgets/Robot"
-import "../Widgets/Robot/RobotExpressions.js" as RobotExpr
+import "../Strings"
 
 Rectangle {
     id: robotPage
@@ -10,7 +10,9 @@ Rectangle {
     color: UiStyle.baseColor
 
     property string current: "mutlu"
-    property string pokeLine: ""
+    // Dizge değil INDEX: saklanan bir dizge dil değişiminde tazelenmez.
+    // Dilden bağımsız durum sakla, gösterim anında çevir.
+    property int pokeIndex: -1
 
     ColumnLayout {
         anchors.fill: parent
@@ -25,9 +27,9 @@ Rectangle {
         RobotSpeechBubble {
             Layout.alignment: Qt.AlignHCenter
             maxWidth: Math.min(560, robotPage.width - 120)
-            text: robotPage.pokeLine !== ""
-                  ? robotPage.pokeLine
-                  : RobotExpr.lineOf(robotPage.current)
+            text: robotPage.pokeIndex >= 0
+                  ? RobotStrings.poke(robotPage.pokeIndex)
+                  : RobotStrings.line(robotPage.current)
         }
 
         Item {
@@ -45,7 +47,7 @@ Rectangle {
                                                                           parent.width / 1.18))))
 
                 onTapped: {
-                    robotPage.pokeLine = RobotExpr.randomPoke()
+                    robotPage.pokeIndex = RobotStrings.randomPokeIndex()
                     pokeTimer.restart()
                 }
             }
@@ -64,7 +66,7 @@ Rectangle {
 
         onExpressionSelected: (id) => {
             robotPage.current = id
-            robotPage.pokeLine = ""
+            robotPage.pokeIndex = -1
             pokeTimer.stop()
         }
     }
@@ -73,6 +75,6 @@ Rectangle {
     Timer {
         id: pokeTimer
         interval: 2600
-        onTriggered: robotPage.pokeLine = ""
+        onTriggered: robotPage.pokeIndex = -1
     }
 }

@@ -114,12 +114,12 @@ Popup {
         wifiPopup.inlineInfo = ""
 
         if (wifiPopup.selEnterprise) {
-            wifiPopup.inlineError = qsTr("Kurumsal (802.1X) ağlar desteklenmiyor.")
+            wifiPopup.inlineError = qsTr("Enterprise (802.1X) networks are not supported.")
             return
         }
         if (wifiPopup.needsPassword) {
             if (passwordField.text.length === 0) {
-                wifiPopup.inlineError = qsTr("Şifre girin.")
+                wifiPopup.inlineError = qsTr("Enter a password.")
                 return
             }
             wifiManager.connectToNetwork(wifiPopup.selectedSsid, passwordField.text)
@@ -147,7 +147,7 @@ Popup {
             wifiPopup.passwordRequested = false
             wifiPopup.showPassword = false
             wifiPopup.inlineError = ""
-            wifiPopup.inlineInfo = qsTr("%1 ağına bağlanıldı.").arg(ssid)
+            wifiPopup.inlineInfo = qsTr("Connected to %1.").arg(ssid)
             Qt.inputMethod.hide()
         }
 
@@ -177,7 +177,7 @@ Popup {
                 spacing: 2
 
                 Text {
-                    text: qsTr("Wi-Fi")
+                    text: "Wi-Fi"
                     font.pixelSize: 24
                     font.bold: true
                     color: UiStyle.textColor
@@ -327,7 +327,7 @@ Popup {
                     anchors.centerIn: parent
                     width: parent.width - 40
                     visible: wifiManager.networkCount === 0
-                    text: wifiManager.scanning ? qsTr("Ağlar taranıyor…") : qsTr("Ağ bulunamadı")
+                    text: wifiManager.scanning ? qsTr("Scanning for networks…") : qsTr("No networks found")
                     font.pixelSize: 14
                     color: UiStyle.subtextColor
                     horizontalAlignment: Text.AlignHCenter
@@ -343,7 +343,7 @@ Popup {
 
                 Text {
                     Layout.fillWidth: true
-                    text: wifiPopup.hasSelection ? wifiPopup.selectedSsid : qsTr("Bir ağ seçin")
+                    text: wifiPopup.hasSelection ? wifiPopup.selectedSsid : qsTr("Select a network")
                     font.pixelSize: 20
                     font.bold: true
                     color: wifiPopup.hasSelection ? UiStyle.textColor : UiStyle.subtextColor
@@ -355,11 +355,11 @@ Popup {
                     visible: wifiPopup.hasSelection
                     text: {
                         var parts = []
-                        parts.push(wifiPopup.selSecured ? wifiPopup.selSecurity : qsTr("Açık ağ"))
+                        parts.push(wifiPopup.selSecured ? wifiPopup.selSecurity : qsTr("Open network"))
                         if (wifiPopup.selSignal >= 0)
-                            parts.push(qsTr("sinyal %1%").arg(wifiPopup.selSignal))
+                            parts.push(qsTr("signal %1%").arg(wifiPopup.selSignal))
                         if (wifiPopup.selSaved)
-                            parts.push(qsTr("kayıtlı"))
+                            parts.push(qsTr("saved"))
                         return parts.join(" · ")
                     }
                     font.pixelSize: 12
@@ -390,7 +390,7 @@ Popup {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             verticalAlignment: TextInput.AlignVCenter
-                            placeholderText: qsTr("Şifre")
+                            placeholderText: qsTr("Password")
                             placeholderTextColor: UiStyle.subtextColor
                             color: UiStyle.textColor
                             font.pixelSize: 16
@@ -414,7 +414,7 @@ Popup {
 
                             Text {
                                 anchors.centerIn: parent
-                                text: wifiPopup.showPassword ? qsTr("Gizle") : qsTr("Göster")
+                                text: wifiPopup.showPassword ? qsTr("Hide") : qsTr("Show")
                                 font.pixelSize: 11
                                 color: UiStyle.subtextColor
                             }
@@ -432,7 +432,7 @@ Popup {
                 Text {
                     Layout.fillWidth: true
                     visible: wifiPopup.hasSelection && wifiPopup.selEnterprise
-                    text: qsTr("Kurumsal (802.1X) ağlar bu uygulamadan bağlanamaz.")
+                    text: qsTr("Enterprise (802.1X) networks cannot be joined from this app.")
                     font.pixelSize: 12
                     color: UiStyle.subtextColor
                     wrapMode: Text.Wrap
@@ -459,8 +459,8 @@ Popup {
                             anchors.centerIn: parent
                             text: wifiManager.busy
                                     && wifiManager.pendingSsid === wifiPopup.selectedSsid
-                                  ? qsTr("Lütfen bekleyin…")
-                                  : (wifiPopup.selActive ? qsTr("Bağlantıyı Kes") : qsTr("Bağlan"))
+                                  ? qsTr("Please wait…")
+                                  : (wifiPopup.selActive ? qsTr("Disconnect") : qsTr("Connect"))
                             font.pixelSize: 17
                             font.bold: true
                             color: UiStyle.onHeaderColor
@@ -492,7 +492,7 @@ Popup {
 
                         Text {
                             anchors.centerIn: parent
-                            text: qsTr("Unut")
+                            text: qsTr("Forget")
                             font.pixelSize: 16
                             font.bold: true
                             color: UiStyle.textColor
@@ -538,7 +538,7 @@ Popup {
 
                 Text {
                     Layout.fillWidth: true
-                    text: wifiManager.supported ? qsTr("Wi-Fi kapalı") : qsTr("Wi-Fi kullanılamıyor")
+                    text: wifiManager.supported ? qsTr("Wi-Fi is off") : qsTr("Wi-Fi unavailable")
                     font.pixelSize: 18
                     font.bold: true
                     color: UiStyle.textColor
@@ -548,7 +548,7 @@ Popup {
                 Text {
                     Layout.fillWidth: true
                     text: wifiManager.supported
-                          ? qsTr("Ağları görmek için yukarıdaki anahtarla Wi-Fi'yi açın.")
+                          ? qsTr("Turn Wi-Fi on with the switch above to see networks.")
                           : wifiManager.statusText
                     font.pixelSize: 13
                     color: UiStyle.subtextColor

@@ -69,9 +69,10 @@ Item {
                 Layout.fillWidth: true
                 text: {
                     if (root.enterprise)
-                        return qsTr("Kurumsal (802.1X) — desteklenmiyor")
-                    var label = root.secured ? root.security : qsTr("Açık ağ")
-                    return label + " · %" + root.signalStrength
+                        return qsTr("Enterprise (802.1X) — not supported")
+                    var label = root.secured ? root.security : qsTr("Open network")
+                    //: %1 güvenlik tipi ("WPA2") veya "Açık ağ", %2 sinyal yüzdesi
+                    return qsTr("%1 · %2%").arg(label).arg(root.signalStrength)
                 }
                 font.pixelSize: 11
                 color: UiStyle.subtextColor
@@ -93,9 +94,9 @@ Item {
             Text {
                 id: badgeText
                 anchors.centerIn: parent
-                text: root.pending ? qsTr("…")
-                    : root.active ? qsTr("Bağlı")
-                    : qsTr("Kayıtlı")
+                text: root.pending ? "…"
+                    : root.active ? qsTr("Connected")
+                    : qsTr("Saved")
                 font.pixelSize: 11
                 font.bold: true
                 color: root.active ? UiStyle.contrastOn(UiStyle.buttonProgress)

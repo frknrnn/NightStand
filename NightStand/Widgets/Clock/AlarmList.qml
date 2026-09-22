@@ -37,7 +37,7 @@ GridView {
 
             alarmId: model.alarmId
             alarmTime: model.timeString
-            alarmLabel: model.label
+            alarmLabel: model.label.length > 0 ? model.label : qsTr("Alarm")
             alarmEnabled: model.enabled
             alarmRepeatDays: model.repeatDays || []
 
@@ -68,7 +68,7 @@ GridView {
 
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "No alarms yet"
+            text: qsTr("No alarms yet")
             font.pixelSize: 20
             font.bold: true
             color: UiStyle.textColor
@@ -76,7 +76,7 @@ GridView {
 
         Text {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Tap “+ Add Alarm” to create your first one"
+            text: qsTr("Tap “+ Add Alarm” to create your first one")
             font.pixelSize: 14
             color: UiStyle.subtextColor
         }

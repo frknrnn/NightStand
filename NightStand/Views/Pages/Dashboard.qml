@@ -172,7 +172,7 @@ Rectangle {
                         Layout.column: 2
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        title: "Sleep"
+                        title: qsTr("Sleep")
                         iconSource: UiStyle.monoIconPath("moon")
                         onClicked: appController.toggleNightMode()
                     }
@@ -182,7 +182,7 @@ Rectangle {
                         Layout.column: 3
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        title: "Good Morning"
+                        title: qsTr("Good Morning")
                         iconSource: UiStyle.monoIconPath("sunrise")
                         onClicked: { /* TODO: morning routine */ }
                     }
@@ -192,7 +192,7 @@ Rectangle {
                         Layout.column: 2
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        title: "Book"
+                        title: qsTr("Book")
                         iconSource: UiStyle.monoIconPath("book")
                         onClicked: {
                             dashboard.countdownTarget = "reading"
@@ -205,7 +205,7 @@ Rectangle {
                         Layout.column: 3
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        title: "Gallery"
+                        title: qsTr("Gallery")
                         iconSource: UiStyle.monoIconPath("image")
                         onClicked: {
                             dashboard.countdownTarget = "gallery"
@@ -234,7 +234,7 @@ Rectangle {
                     ActionCard {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        title: "Ambiance"
+                        title: qsTr("Ambiance")
                         iconSource: UiStyle.monoIconPath("music")
                         onClicked: { /* TODO: ambiance scene */ }
                     }

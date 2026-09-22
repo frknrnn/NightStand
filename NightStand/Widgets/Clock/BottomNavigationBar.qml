@@ -16,25 +16,25 @@ Rectangle {
         spacing: 40
 
         NavigationIcon {
-            labelText: "Clock"
+            labelText: qsTr("Clock")
             isActive: currentPage === 0
             onClicked: navigationBar.pageClicked(0)
         }
 
         NavigationIcon {
-            labelText: "Alarm"
+            labelText: qsTr("Alarm")
             isActive: currentPage === 1
             onClicked: navigationBar.pageClicked(1)
         }
 
         NavigationIcon {
-            labelText: "Timer"
+            labelText: qsTr("Timer")
             isActive: currentPage === 2
             onClicked: navigationBar.pageClicked(2)
         }
 
         NavigationIcon {
-            labelText: "Stopwatch"
+            labelText: qsTr("Stopwatch")
             isActive: currentPage === 3
             onClicked: navigationBar.pageClicked(3)
         }

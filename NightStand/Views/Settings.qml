@@ -19,7 +19,7 @@ Rectangle {
         SettingsColumn {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            title: "General Settings"
+            title: qsTr("General Settings")
 
             content: ColumnLayout {
                 anchors.fill: parent
@@ -27,7 +27,7 @@ Rectangle {
 
                 // Theme Selection Section
                 Text {
-                    text: "Theme"
+                    text: qsTr("Theme")
                     font.pixelSize: 14
                     font.bold: true
                     color: UiStyle.subtextColor
@@ -47,14 +47,15 @@ Rectangle {
         SettingsColumn {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            title: "Robot Character"
+            title: qsTr("Robot Character")
 
             content: ColumnLayout {
                 anchors.fill: parent
                 spacing: 10
 
                 Text {
-                    text: "Karakter"
+                    //: Karakter
+                    text: qsTr("Character")
                     font.pixelSize: 14
                     font.bold: true
                     color: UiStyle.subtextColor
@@ -71,20 +72,32 @@ Rectangle {
             }
         }
 
-        // Column 3: Advanced Settings (Empty for now)
+        // Column 3: Language
         SettingsColumn {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            title: "Advanced Settings"
+            title: qsTr("Language")
 
-            content: Item {
+            content: ColumnLayout {
                 anchors.fill: parent
+                spacing: 10
 
                 Text {
-                    anchors.centerIn: parent
-                    text: "Coming Soon..."
+                    text: qsTr("Interface language")
                     font.pixelSize: 14
+                    font.bold: true
                     color: UiStyle.subtextColor
+                }
+
+                // Tek yazma: kalıcılaştırmayı LanguageManager kendi yapıyor,
+                // UiStyle.setTheme()'in çift yazmasının aksine.
+                LanguageSelector {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    selectedCode: languageManager.currentLanguage
+                    onLanguageSelected: (code) => {
+                        languageManager.currentLanguage = code
+                    }
                 }
             }
         }

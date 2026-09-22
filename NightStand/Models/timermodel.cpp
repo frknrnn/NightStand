@@ -39,9 +39,9 @@ QString TimerModel::presetLabel(qint64 ms)
 {
     const int minutes = static_cast<int>(ms / 60000);
     if (minutes > 0)
-        return QStringLiteral("%1 min").arg(minutes);
+        return tr("%1 min").arg(minutes);
 
-    return QStringLiteral("%1 sec").arg(static_cast<int>(ms / 1000));
+    return tr("%1 sec").arg(static_cast<int>(ms / 1000));
 }
 
 QVariantList TimerModel::presets() const

@@ -44,7 +44,7 @@ Rectangle {
 
         Text {
             Layout.alignment: Qt.AlignHCenter
-            text: "Time's up"
+            text: qsTr("Time's up")
             font.pixelSize: 56
             font.bold: true
             color: UiStyle.white
@@ -79,7 +79,7 @@ Rectangle {
 
             Text {
                 anchors.centerIn: parent
-                text: "Dismiss"
+                text: qsTr("Dismiss")
                 font.pixelSize: 24
                 font.bold: true
                 color: UiStyle.black

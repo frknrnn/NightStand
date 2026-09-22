@@ -123,6 +123,13 @@ qt_add_qml_module(appNightStand
         QML_FILES Widgets/Wifi/WifiStatusButton.qml
         QML_FILES Widgets/Wifi/WifiNetworkRow.qml
         QML_FILES Widgets/Wifi/WifiPopup.qml
+        QML_FILES Widgets/Breathing/BreathingOverlay.qml
+        QML_FILES Widgets/Breathing/BreathModeButton.qml
+        QML_FILES Widgets/Breathing/BreathDotsVisual.qml
+        QML_FILES Widgets/Breathing/BreathBoxVisual.qml
+        QML_FILES Widgets/Breathing/BreathPetalsVisual.qml
+        QML_FILES Widgets/Breathing/BreathingPatterns.js
+        RESOURCES Assets/icons/mono/wind.svg Assets/icons/mono/activity.svg
         SOURCES Models/languagemanager.h Models/languagemanager.cpp
         RESOURCES Strings/qmldir
         QML_FILES Strings/BreathingStrings.qml

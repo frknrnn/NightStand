@@ -61,3 +61,16 @@ void AppController::toggleGalleryMode()
 {
     setGalleryMode(!m_galleryMode);
 }
+
+void AppController::setBreathingMode(bool enabled)
+{
+    if (m_breathingMode != enabled) {
+        m_breathingMode = enabled;
+        emit breathingModeChanged();
+    }
+}
+
+void AppController::toggleBreathingMode()
+{
+    setBreathingMode(!m_breathingMode);
+}

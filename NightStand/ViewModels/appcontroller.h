@@ -14,6 +14,7 @@ class AppController : public QObject
     Q_PROPERTY(bool flashMode READ flashMode WRITE setFlashMode NOTIFY flashModeChanged)
     Q_PROPERTY(bool readingMode READ readingMode WRITE setReadingMode NOTIFY readingModeChanged)
     Q_PROPERTY(bool galleryMode READ galleryMode WRITE setGalleryMode NOTIFY galleryModeChanged)
+    Q_PROPERTY(bool breathingMode READ breathingMode WRITE setBreathingMode NOTIFY breathingModeChanged)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -38,6 +39,10 @@ public:
     void setGalleryMode(bool enabled);
     Q_INVOKABLE void toggleGalleryMode();
 
+    bool breathingMode() const { return m_breathingMode; }
+    void setBreathingMode(bool enabled);
+    Q_INVOKABLE void toggleBreathingMode();
+
 private:
     DateTimeViewModel *dateTimeViewModel;
     TodoViewModel *todoViewModel;
@@ -47,12 +52,14 @@ private:
     bool m_flashMode = false;
     bool m_readingMode = false;
     bool m_galleryMode = false;
+    bool m_breathingMode = false;
 
 signals:
     void nightModeChanged();
     void flashModeChanged();
     void readingModeChanged();
     void galleryModeChanged();
+    void breathingModeChanged();
 };
 
 #endif // APPCONTROLLER_H

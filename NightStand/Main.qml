@@ -7,6 +7,7 @@ import "Views"
 import "Widgets"
 import "Widgets/Page"
 import "Widgets/Clock"
+import "Widgets/Breathing"
 
 QQC2.ApplicationWindow {
     width: 1024
@@ -70,6 +71,12 @@ QQC2.ApplicationWindow {
     // Gallery Overlay - animated gradient slideshow
     GalleryOverlay {
         id: galleryOverlay
+        anchors.fill: parent
+    }
+
+    // Breathing Overlay - guided breathing session, opaque full-screen
+    BreathingOverlay {
+        id: breathingOverlay
         anchors.fill: parent
     }
 

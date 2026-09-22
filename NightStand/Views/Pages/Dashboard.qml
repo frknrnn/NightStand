@@ -230,13 +230,46 @@ Rectangle {
                                                       "qrc:/NightStand/Views/TodoPage.qml")
                     }
 
-                    // Ambiance button (single column, full height)
-                    ActionCard {
+                    // Üçüncü sütun ikiye bölünmüş: üstte büyük Egzersiz, altta ufak
+                    // Nefes kartı. Oran ColumnLayout'a bırakılmıyor - fillHeight'lı
+                    // öğelerde artan alan eşit paylaşılır, 60/40 tutmazdı. Bu yüzden
+                    // düz bir Item içinde yükseklik doğrudan hesaplanıyor.
+                    Item {
+                        id: rightStack
+
                         Layout.fillWidth: true
                         Layout.fillHeight: true
-                        title: qsTr("Ambiance")
-                        iconSource: UiStyle.monoIconPath("music")
-                        onClicked: { /* TODO: ambiance scene */ }
+
+                        readonly property int gap: 5
+
+                        ActionCard {
+                            id: exerciseCard
+
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.top: parent.top
+                            height: (rightStack.height - rightStack.gap) * 0.6
+                            //: Egzersiz
+                            title: qsTr("Exercise")
+                            iconSource: UiStyle.monoIconPath("activity")
+                            onClicked: { /* TODO: egzersiz akışı */ }
+                        }
+
+                        ActionCard {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+                            anchors.top: exerciseCard.bottom
+                            anchors.topMargin: rightStack.gap
+                            anchors.bottom: parent.bottom
+                            iconSize: 26
+                            //: Nefes
+                            title: qsTr("Breathing")
+                            iconSource: UiStyle.monoIconPath("wind")
+                            onClicked: {
+                                dashboard.countdownTarget = "breathing"
+                                countdownOverlay.running = true
+                            }
+                        }
                     }
                 }
             }
@@ -250,6 +283,8 @@ Rectangle {
                 appController.readingMode = true
             } else if (dashboard.countdownTarget === "gallery") {
                 appController.galleryMode = true
+            } else if (dashboard.countdownTarget === "breathing") {
+                appController.breathingMode = true
             }
             dashboard.countdownTarget = ""
         }

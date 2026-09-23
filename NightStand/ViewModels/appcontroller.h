@@ -2,6 +2,7 @@
 #define APPCONTROLLER_H
 
 #include <QObject>
+#include <QString>
 #include "../ViewModels/datetimeviewmodel.h"
 #include "../ViewModels/todoviewmodel.h"
 #include "../ViewModels/alarmviewmodel.h"
@@ -17,6 +18,9 @@ class AppController : public QObject
     Q_PROPERTY(bool galleryMode READ galleryMode WRITE setGalleryMode NOTIFY galleryModeChanged)
     Q_PROPERTY(bool ambianceMode READ ambianceMode WRITE setAmbianceMode NOTIFY ambianceModeChanged)
     Q_PROPERTY(bool breathingMode READ breathingMode WRITE setBreathingMode NOTIFY breathingModeChanged)
+    // "" = oyun yok. Uc ayri bool yerine tek dizge: overlay Loader ile dogru
+    // oyunu yukluyor, yeni oyun eklemek yalnizca yeni bir id demek.
+    Q_PROPERTY(QString activeGame READ activeGame WRITE setActiveGame NOTIFY activeGameChanged)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -50,6 +54,11 @@ public:
     void setBreathingMode(bool enabled);
     Q_INVOKABLE void toggleBreathingMode();
 
+    QString activeGame() const { return m_activeGame; }
+    void setActiveGame(const QString &id);
+    Q_INVOKABLE void startGame(const QString &id);
+    Q_INVOKABLE void stopGame();
+
 private:
     DateTimeViewModel *dateTimeViewModel;
     TodoViewModel *todoViewModel;
@@ -62,6 +71,7 @@ private:
     bool m_galleryMode = false;
     bool m_ambianceMode = false;
     bool m_breathingMode = false;
+    QString m_activeGame;
 
 signals:
     void nightModeChanged();
@@ -70,6 +80,7 @@ signals:
     void galleryModeChanged();
     void ambianceModeChanged();
     void breathingModeChanged();
+    void activeGameChanged();
 };
 
 #endif // APPCONTROLLER_H

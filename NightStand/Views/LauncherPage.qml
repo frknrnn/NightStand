@@ -103,6 +103,13 @@ Rectangle{
         }
 
         ListElement {
+            title: qsTr("Games")
+            pageIcon: "game"
+            page: "GamesPage.qml"
+            fallback: ""
+        }
+
+        ListElement {
             title: qsTr("Settings")
             pageIcon: "settings"
             page: "Settings.qml"

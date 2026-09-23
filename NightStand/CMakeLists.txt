@@ -147,6 +147,17 @@ qt_add_qml_module(appNightStand
         QML_FILES Strings/BreathingStrings.qml
         QML_FILES Strings/RobotStrings.qml
         QML_FILES Widgets/Settings/LanguageSelector.qml
+        QML_FILES Views/GamesPage.qml
+        QML_FILES Widgets/Games/GameOverlay.qml
+        QML_FILES Widgets/Games/GameShell.qml
+        QML_FILES Widgets/Games/GameScenery.qml
+        QML_FILES Widgets/Games/GameCard.qml
+        QML_FILES Widgets/Games/FlappyGame.qml
+        QML_FILES Widgets/Games/RunnerGame.qml
+        QML_FILES Widgets/Games/ReflexGame.qml
+        QML_FILES Widgets/Games/GameRules.js
+        QML_FILES Strings/GameStrings.qml
+        RESOURCES Assets/icons/game-dark.svg Assets/icons/game-light.svg Assets/icons/mono/gamepad.svg
 
 )
 

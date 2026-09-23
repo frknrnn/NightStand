@@ -296,6 +296,10 @@
 <context>
     <name>LauncherPage</name>
     <message>
+        <source>Games</source>
+        <translation>Oyunlar</translation>
+    </message>
+    <message>
         <source>Clock</source>
         <translation>Saat</translation>
     </message>
@@ -989,6 +993,105 @@
     <message>
         <source>Turn Wi-Fi on with the switch above to see networks.</source>
         <translation>Ağları görmek için yukarıdaki anahtarla Wi-Fi'yi açın.</translation>
+    </message>
+</context>
+<context>
+    <name>GameCard</name>
+    <message>
+        <source>Best</source>
+        <translation>Rekor</translation>
+    </message>
+    <message>
+        <source>Not played yet</source>
+        <translation>Henüz oynanmadı</translation>
+    </message>
+</context>
+<context>
+    <name>GameShell</name>
+    <message>
+        <source>New record!</source>
+        <translation>Yeni rekor!</translation>
+    </message>
+    <message>
+        <source>Game over</source>
+        <translation>Oyun bitti</translation>
+    </message>
+    <message>
+        <source>Best</source>
+        <translation>Rekor</translation>
+    </message>
+    <message>
+        <source>Play Again</source>
+        <translation>Tekrar Oyna</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Çıkış</translation>
+    </message>
+</context>
+<context>
+    <name>GameStrings</name>
+    <message>
+        <source>Robot Flight</source>
+        <translation>Robot Uçuşu</translation>
+    </message>
+    <message>
+        <source>Robot Run</source>
+        <translation>Robot Koşusu</translation>
+    </message>
+    <message>
+        <source>Robot Reflex</source>
+        <translation>Robot Refleks</translation>
+    </message>
+    <message>
+        <source>Glide through the gates</source>
+        <translation>Kapılardan süzülerek geç</translation>
+    </message>
+    <message>
+        <source>Jump over the obstacles</source>
+        <translation>Engellerin üstünden atla</translation>
+    </message>
+    <message>
+        <source>Tap the moment the target lights up</source>
+        <translation>Hedef belirince hemen dokun</translation>
+    </message>
+    <message>
+        <source>Tap to fly</source>
+        <translation>Süzülmek için dokun</translation>
+    </message>
+    <message>
+        <source>Tap to jump</source>
+        <translation>Zıplamak için dokun</translation>
+    </message>
+    <message>
+        <source>Wait for the target</source>
+        <translation>Hedefi bekle</translation>
+    </message>
+    <message>
+        <source>Average</source>
+        <translation>Ortalama</translation>
+    </message>
+    <message>
+        <source>Score</source>
+        <translation>Skor</translation>
+    </message>
+</context>
+<context>
+    <name>GamesPage</name>
+    <message>
+        <source>Games</source>
+        <translation>Oyunlar</translation>
+    </message>
+    <message>
+        <source>One-tap games for a short break</source>
+        <translation>Tek dokunuşla oynanan kısa molalar</translation>
+    </message>
+</context>
+<context>
+    <name>ReflexGame</name>
+    <message>
+        <source>Too early!</source>
+        <translation>Çok erken!</translation>
     </message>
 </context>
 </TS>

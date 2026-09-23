@@ -8,6 +8,7 @@ import "Widgets"
 import "Widgets/Page"
 import "Widgets/Clock"
 import "Widgets/Breathing"
+import "Widgets/Games"
 
 QQC2.ApplicationWindow {
     width: 1024
@@ -83,6 +84,12 @@ QQC2.ApplicationWindow {
     // Breathing Overlay - guided breathing session, opaque full-screen
     BreathingOverlay {
         id: breathingOverlay
+        anchors.fill: parent
+    }
+
+    // Game Overlay - full-screen mini games, opaque, above every page
+    GameOverlay {
+        id: gameOverlay
         anchors.fill: parent
     }
 

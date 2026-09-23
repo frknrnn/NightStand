@@ -88,3 +88,21 @@ void AppController::toggleBreathingMode()
 {
     setBreathingMode(!m_breathingMode);
 }
+
+void AppController::setActiveGame(const QString &id)
+{
+    if (m_activeGame != id) {
+        m_activeGame = id;
+        emit activeGameChanged();
+    }
+}
+
+void AppController::startGame(const QString &id)
+{
+    setActiveGame(id);
+}
+
+void AppController::stopGame()
+{
+    setActiveGame(QString());
+}

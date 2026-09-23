@@ -39,7 +39,11 @@ Item {
                         height: 26
                         radius: 13
                         color: getThemePreviewColor(modelData)
-                        border.color: UiStyle.white
+                        // Kenarlık, altındaki satır zeminine göre hesaplanıyor:
+                        // seçiliyken headerColor, değilken innerCardColor. Sabit
+                        // beyaz bırakılınca light temasında açık zemin üstünde
+                        // açık önizleme noktası kayboluyordu.
+                        border.color: UiStyle.contrastOn(themeButton.color)
                         border.width: 2
                     }
 
@@ -49,7 +53,10 @@ Item {
                         text: getThemeDisplayName(modelData)
                         font.pixelSize: 14
                         font.bold: themeManager.currentTheme === modelData
-                        color: themeManager.currentTheme === modelData ? UiStyle.white : UiStyle.textColor
+                        // Seçili satırın zemini headerColor; black temasında bu
+                        // beyaz olduğu için sabit beyaz yazı görünmez oluyordu.
+                        color: themeManager.currentTheme === modelData ? UiStyle.onHeaderColor
+                                                                       : UiStyle.textColor
                     }
 
                     // Checkmark for selected theme
@@ -57,7 +64,7 @@ Item {
                         text: "✓"
                         font.pixelSize: 16
                         font.bold: true
-                        color: UiStyle.white
+                        color: UiStyle.onHeaderColor
                         visible: themeManager.currentTheme === modelData
                     }
                 }

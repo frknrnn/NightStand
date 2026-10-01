@@ -176,10 +176,14 @@ qt_add_qml_module(appNightStand
 # This must sit after qt_add_qml_module: without SOURCE_TARGETS the call defers
 # itself to the end of the project scope and auto-collects every target in the
 # directory tree. Being explicit is worth the placement constraint.
+#
+# TS_FILE_DIR, not TS_OUTPUT_DIRECTORY: newer Qt accepts both (one is an alias),
+# but Qt 6.8 on Raspberry Pi OS only knows TS_FILE_DIR and would read the other
+# as a target name.
 qt_add_translations(
     TARGETS appNightStand
     SOURCE_TARGETS appNightStand
-    TS_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/i18n
+    TS_FILE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/i18n
     RESOURCE_PREFIX "/i18n"
     IMMEDIATE_CALL
 )

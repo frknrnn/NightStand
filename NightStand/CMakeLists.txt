@@ -11,7 +11,10 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
-find_package(Qt6 REQUIRED COMPONENTS QuickShapes)
+# Optional: no C++ code uses QuickShapes, QML imports QtQuick.Shapes at runtime.
+# Older Qt only ships it as the private QuickShapesPrivate module, so a
+# REQUIRED lookup fails on distro Qt (e.g. Qt 6.8 on Raspberry Pi OS).
+find_package(Qt6 OPTIONAL_COMPONENTS QuickShapes)
 find_package(Qt6 REQUIRED COMPONENTS VirtualKeyboard)
 find_package(Qt6 REQUIRED COMPONENTS LinguistTools)
 
@@ -201,7 +204,9 @@ target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Core)
 target_link_libraries(appNightStand PRIVATE Qt6::Multimedia)
-target_link_libraries(appNightStand PRIVATE Qt6::QuickShapes)
+if(TARGET Qt6::QuickShapes)
+    target_link_libraries(appNightStand PRIVATE Qt6::QuickShapes)
+endif()
 target_link_libraries(appNightStand PRIVATE Qt6::VirtualKeyboard)
 
 include(GNUInstallDirs)

@@ -1,6 +1,8 @@
+#include <QDebug>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QScreen>
 #include "Models/modelmanager.h"
 #include "Models/thememanager.h"
 #include "Models/wifimanager.h"
@@ -15,6 +17,14 @@ int main(int argc, char *argv[])
     // QSettings (UiSettings) bu isimler olmadan "Unknown Organization" altına yazıyor
     QCoreApplication::setOrganizationName("NightStand");
     QCoreApplication::setApplicationName("NightStand");
+
+    // On the Pi the UI is scaled onto the panel with QT_SCALE_FACTOR (see
+    // deploy/raspberrypi/nightstand.service). Logged once so the effective
+    // scaling can be checked in the journal: the logical size is what QML
+    // lays out against, the ratio is how far it is shrunk to fit the pixels.
+    if (const QScreen *screen = QGuiApplication::primaryScreen())
+        qInfo() << "Screen" << screen->name() << "logical size" << screen->size()
+                << "devicePixelRatio" << screen->devicePixelRatio();
 
     QQmlApplicationEngine engine;
 

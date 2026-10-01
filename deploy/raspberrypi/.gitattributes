@@ -1,0 +1,3 @@
+# These files are only ever used on the Pi; a CRLF would break the shell
+# script's shebang and systemd's parsing.
+* text eol=lf

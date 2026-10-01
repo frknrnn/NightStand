@@ -1,0 +1,12 @@
+// NightStand runs as a systemd user service with no login session.
+// NetworkManager's default polkit policy only lets an *active local session*
+// change networks, so from the kiosk nmcli could scan but not connect to or
+// save a Wi-Fi network ("Not authorized"). Allow it for the kiosk user.
+//
+// Install: sudo cp 50-nightstand-networkmanager.rules /etc/polkit-1/rules.d/
+polkit.addRule(function(action, subject) {
+    if (action.id.indexOf("org.freedesktop.NetworkManager.") === 0 &&
+        subject.user === "nightstand") {
+        return polkit.Result.YES;
+    }
+});

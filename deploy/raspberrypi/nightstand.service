@@ -1,0 +1,33 @@
+# NightStand kiosk: the app full screen on the panel, no desktop.
+#
+# A systemd *user* service, not a system one: it then runs inside the user's
+# own systemd instance, which gives it XDG_RUNTIME_DIR and the PipeWire session
+# the alarm sound plays through. `loginctl enable-linger` starts that instance
+# at boot, so nobody has to log in.
+#
+# Install: see README.md next to this file.
+
+[Unit]
+Description=NightStand kiosk
+
+[Service]
+WorkingDirectory=%h/NightStand
+ExecStart=%h/NightStand/build-pi/appNightStand
+
+# eglfs draws straight to the display through KMS - no compositor, and the
+# single window always covers the whole screen.
+Environment=QT_QPA_PLATFORM=eglfs
+Environment=QT_QPA_EGLFS_HIDECURSOR=1
+
+# The UI is laid out for 1024x600; the panel is 800x480. Scale everything by
+# 800 / 1024 = 0.78125, so the app sees a 1024x614 logical screen.
+# Platform DPI scaling is switched off: eglfs would otherwise derive another
+# factor from the panel's physical size and multiply it in.
+Environment=QT_ENABLE_HIGHDPI_SCALING=0
+Environment=QT_SCALE_FACTOR=0.78125
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

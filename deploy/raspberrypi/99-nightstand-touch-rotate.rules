@@ -1,0 +1,7 @@
+# The 7" Raspberry Pi Touch Display is mounted upside down. cmdline.txt turns
+# the picture 180 degrees (video=DSI-1:800x480@60,rotate=180); this turns the
+# touch coordinates the same way. libinput applies the matrix, so it holds for
+# Qt's eglfs input as well as for any Wayland compositor.
+#
+# Install: sudo cp 99-nightstand-touch-rotate.rules /etc/udev/rules.d/
+ENV{ID_INPUT_TOUCHSCREEN}=="1", ENV{LIBINPUT_CALIBRATION_MATRIX}="-1 0 1 0 -1 1"
